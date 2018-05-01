@@ -1,0 +1,170 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+.navBar {
+  height: 2vh;
+}
+
+.menu {
+  padding-top: 9px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bodyContainer {
+  background-color: blue;
+}
+
+.lowerBody {
+  height: 80vh;
+  overflow: hidden;
+}
+
+.sideBar {
+  height: 100%;
+  background-color: teal;
+}
+
+.content {
+  padding-left: 0px !important;
+  height: 100%;
+  background-color: navy;
+}
+
+.contentImage {
+  position: relative;
+  z-index: 1;
+  height: 80vh;
+  background-size: cover;
+  /*background-image: url(assets/abstract.jpg);*/
+  background-repeat: no-repeat;
+  background-position: center;
+  /*background-color: red;*/
+  /*background-size: cover;
+  */
+  display: block;
+  /*position: relative;*/
+}
+
+.contentText {
+  padding-left: 0px !important;
+  padding-right: 15px !important;
+  position: relative;
+  z-index: 2;
+}
+
+
+
+.Title {
+  padding-left: -20px;
+  margin-left: -20px;
+
+}
+
+
+
+.bar1,
+.bar2 {
+  width: 35px;
+  height: 3px;
+  background-color: #333;
+  margin: 10px 0;
+  transition: 0.5s;
+}
+
+.change1 {
+  width: 35px;
+  height: 3px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.5s;
+  transform: rotate(45deg)translate(6.5px, 6px)
+}
+
+.change2 {
+  width: 35px;
+  height: 3px;
+  background-color: #333;
+  margin: 6px 0;
+  transition: 0.5s;
+  transform: rotate(-45deg)
+}
+
+/*.footer {*/
+
+/*  position: fixed;*/
+
+/*  bottom: 0;*/
+
+/*  background-color: red;*/
+
+/*  color: white;*/
+
+/*  text-align: center;*/
+
+/*}*/
+
+/*.App {*/
+
+/*  text-align: center;*/
+
+/*}*/
+
+/*.App-logo {*/
+
+/*  animation: App-logo-spin infinite 20s linear;*/
+
+/*  height: 80px;*/
+
+/*}*/
+
+/*.App-header {*/
+
+/*  background-color: #222;*/
+
+/*  height: 150px;*/
+
+/*  padding: 20px;*/
+
+/*  color: white;*/
+
+/*}*/
+
+/*.App-title {*/
+
+/*  font-size: 1.5em;*/
+
+/*}*/
+
+/*.App-intro {*/
+
+/*  font-size: large;*/
+
+/*}*/
+
+/*@keyframes App-logo-spin {*/
+
+/*  from {*/
+
+/*    transform: rotate(0deg);*/
+
+/*  }*/
+
+/*  to {*/
+
+/*    transform: rotate(360deg);*/
+
+/*  }*/
+
+/*}*/
+
+#logo {
+
+  font-family: 'Orbitron', sans-serif;
+
+}
