@@ -1,50 +1,67 @@
 /*global $*/
 import React from 'react';
 import { Row, Col, MediaBox } from 'react-materialize'
-import data from '../assets/images'
-import throttle from 'lodash'
-let pageMax = 10;
+import data from '../assets/contentObject'
+import _ from 'lodash'
+import { throttle, debounce } from 'lodash'
+let pageMax = Object.keys(data).length;
+console.log(pageMax)
 
 
 
 class Content extends React.Component {
-    componentDidMount() {
-        // window.addEventListener('wheelEvent', function(event) {
-        //     console.log(event)
-        //     if (event.wheelDelta >= 0) {
-        //         console.log('Scroll up');
-        //     }
-        //     else {
-        //         console.log('Scroll down');
-        //     }
-        // });
-        scrollEvent = () => {
-            if (event.originalEvent.wheelDelta >= 0) {
-                console.log('Scroll up');
-            }
-            else {
-                console.log('Scroll down');
-            }
-        }
 
-        $(window).bind('mousewheel', _.throttle, );
-    }
 
 
     state = {
         page: 1
+    };
+
+
+    componentDidMount() {
+        console.log(data);
+        var handleScrollDown = () => {
+            console.log("scroll");
+            if (this.state.page < pageMax) {
+                this.setState({
+                    page: this.state.page + 1
+                }, function() {
+                    console.log(this.state.page);
+                });
+            }
+            else {
+                return;
+            }
+        };
+        var handleScrollUp = () => {
+            console.log("scroll");
+            if (this.state.page > 1) {
+                this.setState({
+                    page: this.state.page - 1
+                }, function() {
+                    console.log(this.state.page);
+                });
+            }
+            else {
+                return;
+            }
+        };
+        var throttleBack = _.throttle(function(event) {
+            if (event.originalEvent.wheelDelta >= 0) {
+                console.log('Scroll up');
+                handleScrollUp()
+
+            }
+            else {
+                console.log('Scroll down');
+                handleScrollDown()
+            }
+        }, 5000, { 'trailing': false });
+
+        $(window).bind('mousewheel', throttleBack);
     }
 
-    handleScroll = () => {
-        console.log("scroll")
 
-        this.setState({
-            page: this.state.page + 1
-        }, function() {
-            console.log(this.state.page)
-        })
-
-    }
     render() {
 
         return (
@@ -53,33 +70,33 @@ class Content extends React.Component {
                 <Col s={3} className='contentText'>
                     <Row>
                         <Col s={12} className="left-align Title">
-                            Jonathan Boesel
+                            {data[this.state.page-1].title}
                         </Col>
                     </Row>
                     <Row>
                         <Col s={12} className="p1">
-                            <p>Curious</p>
+                            <p>{data[this.state.page-1].l1}</p>
                         </Col>
                     </Row>
                     <Row>
                         <Col s={12} className="p2">
-                            <p>Quick Learning</p>
+                            <p>{data[this.state.page-1].l2}</p>
                         </Col>
                     </Row>
                     <Row>
                         <Col s={12} className="p3">
-                            <p>Problem Solver</p>
+                            <p>{data[this.state.page-1].l3}</p>
                         </Col>
                     </Row>
                 </Col>
-                <Col s={8} className='contentImage' style= {{backgroundImage: 'url(' + data[this.state.page-1] + ')'}}>
+                <Col s={8} className='contentImage' style= {{backgroundImage: 'url(' + data[this.state.page-1].image + ')'}}>
                     <a />
                 </Col>
                 <Col s={1} className='fill'>
                 
                 </Col>
             </Row>
-        )
+        );
     }
 }
 
