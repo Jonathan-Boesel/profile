@@ -10,6 +10,7 @@ export default [{
         "l1": "line 1",
         "l2": "line 2",
         "l3": "line 3",
+        "link": "Project1Link",
         "image": require('./images/green.png')
     }
 ]

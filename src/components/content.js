@@ -1,5 +1,7 @@
 /*global $*/
 import React from 'react';
+import { Link } from "react-router-dom";
+import { If, Then, Else } from 'react-if';
 import { Row, Col, MediaBox } from 'react-materialize'
 import data from '../assets/contentObject'
 import _ from 'lodash'
@@ -79,7 +81,14 @@ class Content extends React.Component {
                     </Row>
                     <Row>
                         <Col s={12} className="p3">
+                        <If condition={this.state.page > 1}>
+                            <Link to='/viewPage'>
+                                <p>{data[this.state.page-1].l3}</p>
+                            </Link>
+                            <Else />
                             <p>{data[this.state.page-1].l3}</p>
+                        </If>
+                            
                         </Col>
                     </Row>
                 </Col>
