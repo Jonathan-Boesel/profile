@@ -13,8 +13,6 @@ const NavBar = () => (
             <Menu/>
         </Col>
     </Row>
-
-
 );
 
 

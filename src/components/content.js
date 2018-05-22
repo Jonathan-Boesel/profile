@@ -3,20 +3,15 @@ import React from 'react';
 import { Row, Col, MediaBox } from 'react-materialize'
 import data from '../assets/contentObject'
 import _ from 'lodash'
-import { throttle, debounce } from 'lodash'
+import throttle from 'lodash'
+
 let pageMax = Object.keys(data).length;
-console.log(pageMax)
-
-
 
 class Content extends React.Component {
-
-
 
     state = {
         page: 1
     };
-
 
     componentDidMount() {
         console.log(data);
@@ -60,7 +55,6 @@ class Content extends React.Component {
 
         $(window).bind('mousewheel', throttleBack);
     }
-
 
     render() {
 
