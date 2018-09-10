@@ -12,5 +12,13 @@ export default [{
         "l3": "line 3",
         "link": "Project1Link",
         "image": require('./images/green.png')
+    },
+    {
+        "title": "Poject 2",
+        "l1": "line 1",
+        "l2": "line 2",
+        "l3": "line 3",
+        "link": "Project1Link",
+        "image": require('./images/blue.jpg')
     }
 ]

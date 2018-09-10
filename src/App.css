@@ -4,6 +4,37 @@ html {
 
 body {
   min-height: 100%;
+  overflow: hidden;
+}
+
+.testy {
+  background-color: black;
+  height: 100vh;
+}
+
+.modalBack {
+  position: fixed;
+  opacity: .5;
+  z-index: 1000 !important;
+  height: 100%!important;
+  overflow: hidden;
+  width: 100% !important;
+  top: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-color: black;
+  /*background-image: url(assets/images/background-black.jpg)*/
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 5;
+  max-width: 500;
+  min-height: 300;
+  margin: 0 auto;
+  padding: 30
 }
 
 .navBar {

@@ -2,9 +2,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
-import NavBar from './components/navbar.js'
+// import NavBar from './components/navbar.js'
+import NavCombo from './components/navCombo.js'
+import Menu from './components/menu.js'
 import { Row, Col } from 'react-materialize'
 import Content from './components/content.js'
+import MenuModal from './components/menuModal.js'
 
 
 const App = () =>
@@ -12,7 +15,7 @@ const App = () =>
     <div>
       <Row>
         <Col s={12}>
-          <NavBar/>
+          <NavCombo/>
         </Col>
       </Row>
       <Row className='lowerBody'>
@@ -27,7 +30,8 @@ const App = () =>
           This should hide on medium and up
         </Col>
       </Row>
-    </div>
+      
+      </div>
   </Router>;
 
 

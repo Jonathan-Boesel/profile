@@ -53,7 +53,7 @@ class Content extends React.Component {
                 console.log('Scroll down');
                 handleScrollDown()
             }
-        }, 5000, { 'trailing': false });
+        }, 1000, { 'trailing': false });
 
         $(window).bind('mousewheel', throttleBack);
     }

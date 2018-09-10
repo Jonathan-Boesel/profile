@@ -13,7 +13,7 @@ const NavBar = () => (
             <Menu/>
         </Col>
     </Row>
-);
+)
 
 
 export default NavBar;
