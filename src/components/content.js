@@ -6,14 +6,19 @@ import { Row, Col, MediaBox } from 'react-materialize'
 import data from '../assets/contentObject'
 import _ from 'lodash'
 import throttle from 'lodash'
+import InnerContent from './innerContent.js'
+import Tile from './tile.js'
 
-let pageMax = Object.keys(data).length;
+let pageMax = Object.keys(data).length + 1;
 
 class Content extends React.Component {
 
-    state = {
-        page: 1
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            page: 1
+        };
+    }
 
     componentDidMount() {
         console.log(data);
@@ -53,52 +58,37 @@ class Content extends React.Component {
                 console.log('Scroll down');
                 handleScrollDown()
             }
-        }, 1000, { 'trailing': false });
+        }, 2000, { 'trailing': false });
 
         $(window).bind('mousewheel', throttleBack);
+
+
     }
 
     render() {
+        let pageCurrent;
+        // let singleTile =
+        //     <Col s={3}>
+        //             <Tile></Tile>
+        //         </Col>;
+        // let tileNumber = 5
+        // var i
+        // let pageTiles = []
+        // for (i = 0; i < tileNumber; i++) {
+        //     pageTiles.push(
+        //         singleTile
+        //     )
+        // }
+        // let tilesFull = 
 
+        if (this.state.page < 3) {
+            pageCurrent = <InnerContent page={this.state.page-1}></InnerContent>
+        }
+        else if (this.state.page == 3) {
+            pageCurrent = <Tile page={this.state.page}></Tile>
+        }
         return (
-
-            <Row>
-                <Col s={3} className='contentText'>
-                    <Row>
-                        <Col s={12} className="left-align Title">
-                            {data[this.state.page-1].title}
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col s={12} className="p1">
-                            <p>{data[this.state.page-1].l1}</p>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col s={12} className="p2">
-                            <p>{data[this.state.page-1].l2}</p>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col s={12} className="p3">
-                        <If condition={this.state.page > 1}>
-                            <Link to='/viewPage'>
-                                <p>{data[this.state.page-1].l3}</p>
-                            </Link>
-                            <Else />
-                            <p>{data[this.state.page-1].l3}</p>
-                        </If>
-                            
-                        </Col>
-                    </Row>
-                </Col>
-                <Col s={8} className='contentImage' style= {{backgroundImage: 'url(' + data[this.state.page-1].image + ')'}}>
-                    <a />
-                </Col>
-                <Col s={1} className='fill'>
-                
-                </Col>
-            </Row>
+            pageCurrent
         );
     }
 }

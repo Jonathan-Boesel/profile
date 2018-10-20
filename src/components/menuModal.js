@@ -10,9 +10,12 @@ class MenuModal extends React.Component {
         }
         return (
             <div className="modalBack">
-                <p className = "modal">
-                    TEST TEST TEST
-                </p>    
+                <div className="modalContent">
+                    <p>ABOUT ME</p>
+                    <p>PROJECT 1</p>
+                    <p>PROJECT 2</p>
+                    <p>PROJECT 3</p>
+                </div>    
             </div>
         );
     }

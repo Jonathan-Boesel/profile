@@ -28,13 +28,13 @@ body {
   /*background-image: url(assets/images/background-black.jpg)*/
 }
 
-.modal {
-  background-color: #fff;
+.modalContent {
+  text-align: center;
+  color: red;
+  background-color: black;
   border-radius: 5;
-  max-width: 500;
-  min-height: 300;
   margin: 0 auto;
-  padding: 30
+  padding: 30px
 }
 
 .navBar {
@@ -124,6 +124,26 @@ body {
   margin: 6px 0;
   transition: 0.5s;
   transform: rotate(-45deg)
+}
+
+.proTiles-enter {
+  opacity: 0.01;
+  transform: translateY(-100vh);
+}
+
+.proTiles-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 2000ms ease-out;
+}
+
+.proTiles-leave {
+  opacity: 1;
+}
+
+.proTiles-leave-active {
+  opacity: 0.01;
+  transition: opacity 2000ms ease-in;
 }
 
 /*.footer {*/

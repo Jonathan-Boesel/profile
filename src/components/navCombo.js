@@ -4,29 +4,33 @@ import MenuModal from './menuModal.js';
 import { Row, Col } from 'react-materialize';
 import { Link } from "react-router-dom";
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 class NavCombo extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isActive: false
-        };
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         isActive: false
+    //     };
+    // }
 
-
-    handleClick = () => {
-        this.setState({
-            isActive: !this.state.isActive
-        }, function() {
-            console.log(this.state.isActive);
-        });
-        if (!this.state.isActive) {
-            disableBodyScroll
-        }
-    }
+    // handleClick = () => {
+    //     this.setState({
+    //         isActive: !this.state.isActive
+    //     }, function() {
+    //         console.log(this.state.isActive);
+    //     });
+    //     if (!this.state.isActive) {
+    //         disableBodyScroll
+    //     }
+    // }
 
     render() {
-        const { menuState } = this.state.isActive;
+        console.log("XXXX" + (this.props.isActive))
+
+
+        const menuState = !this.props.isActive;
+
         return (
             <div>
                 <Row className='navBar'>
@@ -35,16 +39,16 @@ class NavCombo extends React.Component {
                     </Col>
                     <Col s={4}></Col>
                     <Col s={2} className="right-align">
-                        <Link to={`/menu/${this.state.isActive}`}>
-                            <div className="menu" onClick={this.handleClick}>
-                                <div className={this.state.isActive ? "change1" : "bar1"}></div>
-                                <div className={this.state.isActive ? "change2" : "bar2"}></div>
+                        <Link to={`/menu/` + menuState}>
+                            <div className="menu" onClick={() => this.props.onClick()}>
+                                <div className={this.props.isActive ?  "change1" : "bar1"}></div>
+                                <div className={this.props.isActive ?  "change2" : "bar2"}></div>
                             </div>
                         </Link>
                         
                     </Col>
                 </Row>
-                    <MenuModal show={this.state.isActive}></MenuModal>
+                    <MenuModal show={this.props.isActive}></MenuModal>
             </div>
         );
     }
