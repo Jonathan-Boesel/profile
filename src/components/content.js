@@ -8,6 +8,9 @@ import _ from 'lodash'
 import throttle from 'lodash'
 import InnerContent from './innerContent.js'
 import Tile from './tile.js'
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import '../App.css';
+// import Delayed from 'react-delayed';
 
 let pageMax = Object.keys(data).length + 1;
 
@@ -16,7 +19,8 @@ class Content extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: 1
+            page: 1,
+            tileIsActive: false
         };
     }
 
@@ -64,9 +68,23 @@ class Content extends React.Component {
 
 
     }
+    componentDidUpdate() {
+        if (this.state.page === 3 && this.state.tileIsActive !== true) {
+            this.setState({
+                tileIsActive: true
+            })
+        }
+        else if (this.state.page !== 3 && this.state.tileIsActive === true) {
+            this.setState({
+                tileIsActive: false
+            })
+        }
+    }
 
     render() {
-        let pageCurrent;
+        let pageCurrent = null;
+        const tileIsActive = this.state.tileIsActive;
+        console.log('****' + tileIsActive)
         // let singleTile =
         //     <Col s={3}>
         //             <Tile></Tile>
@@ -81,14 +99,56 @@ class Content extends React.Component {
         // }
         // let tilesFull = 
 
-        if (this.state.page < 3) {
-            pageCurrent = <InnerContent page={this.state.page-1}></InnerContent>
-        }
-        else if (this.state.page == 3) {
-            pageCurrent = <Tile page={this.state.page}></Tile>
-        }
+        // if (this.state.page < 3) {
+        //     pageCurrent = <InnerContent page={this.state.page-1}></InnerContent>
+        // }
+
+        // else if (this.state.page == 3) {
+        //     // pageCurrent = <Tile page={this.state.page}></Tile>
+        //     pageCurrent = (
+
+
+        //         <CSSTransition
+        //             in={tileIsActive}
+        //             timeout={2000}
+        //             classNames='proTiles'
+        //             mountOnEnter
+        //             unmountOnExit>
+        //             <Tile></Tile>
+        //         </CSSTransition>
+        //     )
+        // }
         return (
-            pageCurrent
+            <div>
+                <CSSTransition
+                        in={this.state.page === 1}
+                        timeout={2000}
+                        classNames={'proTiles'}
+                        mountOnEnter
+                        unmountOnExit
+                    >
+                        <div>Hi</div>
+                </CSSTransition>
+                
+                <CSSTransition
+                    in={this.state.page == 2}
+                    timeout={2000}
+                    classNames={'proTiles'}
+                    mountOnEnter
+                    unmountOnExit
+                >
+                    <div>next hi</div>
+                </CSSTransition>
+            <CSSTransition
+                in={tileIsActive}
+                timeout={2000}
+                classNames={'proTiles'}
+                mountOnEnter
+                unmountOnExit
+            >
+                <Tile></Tile>
+            </CSSTransition>
+        </div>
         );
     }
 }

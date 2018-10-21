@@ -4,6 +4,7 @@ import MenuModal from './menuModal.js';
 import { Row, Col } from 'react-materialize';
 import { Link } from "react-router-dom";
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { CSSTransition } from 'react-transition-group';
 
 class NavCombo extends React.Component {
 
@@ -48,7 +49,15 @@ class NavCombo extends React.Component {
                         
                     </Col>
                 </Row>
-                    <MenuModal show={this.props.isActive}></MenuModal>
+                    <CSSTransition
+                        in={this.props.isActive}
+                        timeout={2000}
+                        classNames={'modalMenu'}
+                        unmountOnExit
+                    >
+                        <MenuModal show={this.props.isActive}></MenuModal>
+                    </CSSTransition>
+                    
             </div>
         );
     }
