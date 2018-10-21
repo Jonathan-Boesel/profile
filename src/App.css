@@ -126,14 +126,18 @@ body {
   transform: rotate(-45deg)
 }
 
+.redding {
+  background-color: red;
+}
+
 .proTiles-enter {
   opacity: 0.01;
-  transform: translateY(-100vh);
+  /*transform: translateY(-100vh);*/
 }
 
 .proTiles-enter-active {
   opacity: 1;
-  transform: translateY(0);
+  /*transform: translateY(0);*/
   transition: all 2000ms ease-out;
 }
 

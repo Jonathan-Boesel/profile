@@ -20,7 +20,8 @@ class Content extends React.Component {
         super(props);
         this.state = {
             page: 1,
-            tileIsActive: false
+            tileIsActive: false,
+            wait: false
         };
     }
 
@@ -30,7 +31,8 @@ class Content extends React.Component {
             console.log("scroll");
             if (this.state.page < pageMax) {
                 this.setState({
-                    page: this.state.page + 1
+                    page: this.state.page + 1,
+                    wait: true
                 }, function() {
                     console.log(this.state.page);
                 });
@@ -43,7 +45,8 @@ class Content extends React.Component {
             console.log("scroll");
             if (this.state.page > 1) {
                 this.setState({
-                    page: this.state.page - 1
+                    page: this.state.page - 1,
+                    wait: true
                 }, function() {
                     console.log(this.state.page);
                 });
@@ -85,6 +88,7 @@ class Content extends React.Component {
         let pageCurrent = null;
         const tileIsActive = this.state.tileIsActive;
         console.log('****' + tileIsActive)
+
         // let singleTile =
         //     <Col s={3}>
         //             <Tile></Tile>
@@ -121,30 +125,42 @@ class Content extends React.Component {
         return (
             <div>
                 <CSSTransition
-                        in={this.state.page === 1}
+                        in={this.state.page === 1 && this.state.wait === false}
                         timeout={2000}
                         classNames={'proTiles'}
-                        mountOnEnter
                         unmountOnExit
+                        onExited={() => {
+                            this.setState({
+                              wait: false,
+                            });
+                          }}
                     >
-                        <div>Hi</div>
+                        <div className='redding'>Hi</div>
                 </CSSTransition>
                 
                 <CSSTransition
-                    in={this.state.page == 2}
+                    in={this.state.page === 2 && this.state.wait === false}
                     timeout={2000}
                     classNames={'proTiles'}
-                    mountOnEnter
                     unmountOnExit
+                        onExited={() => {
+                            this.setState({
+                              wait: false,
+                            });
+                          }}
                 >
                     <div>next hi</div>
                 </CSSTransition>
             <CSSTransition
-                in={tileIsActive}
+                in={tileIsActive && this.state.wait === false}
                 timeout={2000}
                 classNames={'proTiles'}
-                mountOnEnter
                 unmountOnExit
+                        onExited={() => {
+                            this.setState({
+                              wait: false,
+                            });
+                          }}
             >
                 <Tile></Tile>
             </CSSTransition>
