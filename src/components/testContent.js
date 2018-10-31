@@ -12,44 +12,23 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../App.css';
 import tileData from '../assets/tileObject.js';
 import TestTile from './testTile.js';
+import TileModal from './tileModal.js';
 
 class TestContent extends React.Component {
     render() {
 
-        const items = tileData.map(({ title, description, key }) => (
-            <CSSTransition
-                key={key}
-                timeout={2000}
-                classNames={'proTiles'}
-                appear={true}
-                unmountOnExit
-                >
-                    <Col s={4}>
-                        <Row>
-                            <Row className='tileTitle'>
-                                {title}
-                            </Row>
-                            <CSSTransition
-                                in={true}
-                                timeout={2000}
-                                classNames={'test'}
-                                appear={true}
-                                unmountOnExit
-                                >
-                                    <Row className='tileDescription'>
-                                        {description}
-                                    </Row>
-                            </CSSTransition>
-                        </Row>
-                    </Col>
-            </CSSTransition>
-        ));
+
+
 
         return (
-
-            <TransitionGroup className='tileWrapper'>
-                {items}
-            </TransitionGroup>
+            <CSSTransition
+                in={true}
+                timeout={2000}
+                classNames={'modalMenu'}
+                unmountOnExit
+            >
+                <TileModal/>
+            </CSSTransition>
 
         )
     }

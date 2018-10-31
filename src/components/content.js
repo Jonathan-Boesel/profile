@@ -11,6 +11,7 @@ import Tile from './tile.js'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../App.css';
 import tileData from '../assets/tileObject.js';
+import TileModal from './tileModal.js';
 // import Delayed from 'react-delayed';
 
 let pageMax = Object.keys(data).length + 1;
@@ -22,8 +23,19 @@ class Content extends React.Component {
         this.state = {
             page: 1,
             tileIsActive: false,
+            tileModalIsActive: false,
             wait: false
         };
+    }
+
+    handleTileClick = () => {
+        this.setState({
+            tileModalIsActive: !this.state.tileModalIsActive,
+            tileIsActive: !this.state.tileIsActive,
+            wait: true
+        }, function() {
+            console.log(this.state.tileModalIsActive);
+        });
     }
 
     componentDidMount() {
@@ -33,7 +45,8 @@ class Content extends React.Component {
             if (this.state.page < pageMax) {
                 this.setState({
                     page: this.state.page + 1,
-                    wait: true
+                    wait: true,
+                    tileModalIsActive: false
                 }, function() {
                     console.log(this.state.page);
                 });
@@ -70,15 +83,14 @@ class Content extends React.Component {
 
         $(window).bind('mousewheel', throttleBack);
 
-
     }
     componentDidUpdate() {
-        if (this.state.page === 3 && this.state.tileIsActive !== true) {
+        if (this.state.page === 3 && this.state.tileIsActive !== true && this.state.tileModalIsActive !== true) {
             this.setState({
                 tileIsActive: true
             })
         }
-        else if (this.state.page !== 3 && this.state.tileIsActive === true) {
+        else if (this.state.page !== 3 && this.state.tileIsActive === true && this.state.tileModalIsActive === true) {
             this.setState({
                 tileIsActive: false
             })
@@ -99,7 +111,7 @@ class Content extends React.Component {
 
             return <CSSTransition
                     key={key}
-                    in={this.state.page ===3 && this.state.wait === false}
+                    in={this.state.page ===3 && this.state.wait === false && this.state.tileModalIsActive === false}
                     timeout={1000}
                     classNames={'tile'}
                     // appear={true}
@@ -110,7 +122,7 @@ class Content extends React.Component {
                             });
                           }}
                     >
-                        <div style={styles} className='tileWrapper'>
+                        <div style={styles} className='tileWrapper' onClick={() => this.handleTileClick()}>
                             <Col s={4}>
                                 <Row>
                                     <Row className='tileTitle'>
@@ -161,7 +173,7 @@ class Content extends React.Component {
         //     )
         // }
         return (
-            <div>
+            <Col s={12} l={10}>
                 <CSSTransition
                         in={this.state.page === 1 && this.state.wait === false}
                         timeout={2000}
@@ -178,7 +190,7 @@ class Content extends React.Component {
                 </CSSTransition>
                 
                 <CSSTransition
-                    in={this.state.page === 2 && this.state.wait === false}
+                    in={this.state.page === 2 && this.state.wait === false }
                     timeout={2000}
                     classNames={'proTiles'}
                     unmountOnExit
@@ -190,11 +202,24 @@ class Content extends React.Component {
                 >
                     <InnerContent page={1}></InnerContent>
                 </CSSTransition>
-          
-            
+                
                 {tileDiv}
-           
-        </div>
+                
+                <CSSTransition
+                    in={this.state.tileModalIsActive && this.state.wait === false}
+                    timeout={2000}
+                    classNames={'tileModal'}
+                    unmountOnExit
+                        onExited={() => {
+                            this.setState({
+                              wait: false,
+                            });
+                          }}
+                >
+                    <TileModal onClick={() => this.handleTileClick()}/>
+                </CSSTransition>
+                
+        </Col>
         );
     }
 }

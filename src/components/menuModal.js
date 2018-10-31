@@ -6,17 +6,7 @@ import '../App.css';
 
 class MenuModal extends React.Component {
     render() {
-        console.log("$$$$$$$" + this.props.show)
-        // if (!this.props.show) {
-        //     return (
 
-        //         null
-
-
-        //     )
-
-
-        // }
         return (
 
             <div className="modalBack">
