@@ -163,231 +163,36 @@ body {
 
 /*Tile CSS for delayed animations*/
 
-.tile1-appear {
+.tile-appear {
 
   /*transform: translateY(-100vh);*/
 }
 
-.tile1-appear-active {
+.tile-appear-active {
   opacity: 1;
   /*transform: translateY(0);*/
   transition: all 2000ms ease-out;
 }
 
-.tile1-enter {
+.tile-enter {
   opacity: 0.01;
   transform: translateY(-100vh);
 }
 
-.tile1-enter-active {
+.tile-enter-active {
   opacity: 1;
   transform: translateY(0);
   transition: all 500ms ease-out;
 }
 
-.tile1-exit {
+.tile-exit {
   opacity: 1;
 }
 
-.tile1-exit-active {
+.tile-exit-active {
   opacity: 0.01;
   transition: opacity 500ms ease-in;
 }
-
-.tile2-appear {
-
-  /*transform: translateY(-100vh);*/
-}
-
-.tile2-appear-active {
-  animation-delay: .1s;
-  opacity: 1;
-  /*transform: translateY(0);*/
-  transition: all 2000ms ease-out;
-}
-
-.tile2-enter {
-  opacity: 0.01;
-  transform: translateY(-100vh);
-}
-
-.tile2-enter-active {
-  /*animation-delay: .1s;*/
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 500ms ease-out;
-}
-
-.tile2-exit {
-  opacity: 1;
-}
-
-.tile2-exit-active {
-  /*animation-delay: .1s;*/
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
-}
-
-.tile3-appear {
-
-  /*transform: translateY(-100vh);*/
-}
-
-.tile3-appear-active {
-  animation-delay: .2s;
-  opacity: 1;
-  /*transform: translateY(0);*/
-  transition: all 2000ms ease-out;
-}
-
-.tile3-enter {
-  opacity: 0.01;
-  transform: translateY(-100vh);
-}
-
-.tile3-enter-active {
-  /*animation-delay: .2s;*/
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 500ms ease-out;
-}
-
-.tile3-exit {
-  opacity: 1;
-}
-
-.tile3-exit-active {
-  /*animation-delay: .2s;*/
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
-}
-
-.tile4-appear {
-
-  /*transform: translateY(-100vh);*/
-}
-
-.tile4-appear-active {
-  animation-delay: .3s;
-  opacity: 1;
-  /*transform: translateY(0);*/
-  transition: all 2000ms ease-out;
-}
-
-.tile4-enter {
-  opacity: 0.01;
-  transform: translateY(-100vh);
-}
-
-.tile4-enter-active {
-  /*animation-delay: .3s;*/
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 500ms ease-out;
-}
-
-.tile4-exit {
-  opacity: 1;
-}
-
-.tile4-exit-active {
-  /*animation-delay: .3s;*/
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
-}
-
-.tile5-appear {
-
-  /*transform: translateY(-100vh);*/
-}
-
-.tile5-appear-active {
-  animation-delay: .4s;
-  opacity: 1;
-  /*transform: translateY(0);*/
-  transition: all 2000ms ease-out;
-}
-
-.tile5-enter {
-  transition-delay: 1s;
-  opacity: 0.01;
-  transform: translateY(-100vh);
-}
-
-.tile5-enter-active {
-  transition-delay: 1s;
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 500ms ease-out;
-}
-
-.tile5-exit {
-  opacity: 1;
-}
-
-.tile5-exit-active {
-  transition-delay: .4s;
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
-}
-
-.tile6-appear {
-  opacity: 0.01;
-  transform: translateY(-100vh);
-}
-
-.tile6-appear-active {
-  animation-delay: .5s;
-  opacity: 1;
-  transform: translateY(0vh);
-  transition: all 2000ms ease-out;
-}
-
-.tile6-enter {
-  opacity: 0.01;
-  transform: translateY(-100vh);
-}
-
-.tile6-enter-active {
-  opacity: 1;
-  /*animation-delay: .5s;*/
-  transform: translateY(0);
-  transition: all 500ms ease-out;
-}
-
-.tile6-exit {
-  opacity: 1;
-}
-
-.tile6-exit-active {
-  /*animation-delay: .5s;*/
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
-}
-
-
-
-
-.test-appear {
-  transform: translateY(-100vh);
-}
-
-.test-appear-active {
-  transform: translateY(0);
-  transition: all 1500ms ease-out;
-}
-
-.test-exit {}
-
-.test-exit-active {}
-
-.totalTiles-enter {}
-
-.totalTiles-enter-active {}
-
-.totalTiles-exit {}
-
-.totalTiles-exit-active {}
 
 .modalMenu-enter {
   opacity: 0.01;

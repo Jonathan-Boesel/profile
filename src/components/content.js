@@ -101,7 +101,7 @@ class Content extends React.Component {
                     key={key}
                     in={this.state.page ===3 && this.state.wait === false}
                     timeout={1000}
-                    classNames={'tile' + key}
+                    classNames={'tile'}
                     // appear={true}
                     unmountOnExit
                     onExited={() => {
