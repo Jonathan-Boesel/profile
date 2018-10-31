@@ -1,8 +1,9 @@
 import React from 'react';
 import { Row, Col } from 'react-materialize';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../App.css';
 import Delayed from 'react-delayed';
+// import data from '../assets/tileObject.js';
 
 class Tile extends React.Component {
     // constructor(props) {
@@ -19,7 +20,6 @@ class Tile extends React.Component {
     //     }
     // }
     render() {
-
 
         // const isActive = this.state.isActive;
         // console.log('****' + isActive.isActive)
@@ -48,31 +48,20 @@ class Tile extends React.Component {
             //     unmountOnExit>
             //     {tiles}
             // </CSSTransition>
-            
+
+
             <div className='tileWrapper'>
-                            <Col s={4}>
-                                <Row>
-                                    <Row className='tileTitle'>
-                                        PROJECT
-                                    </Row>
-                                    <Row className='tileDescription'>
-                                        SOMETHING SOMETHING SOMETHING
-                                    </Row>
-                                </Row>
-                            </Col>
-                        </div>
-            // <div className='tileWrapper'>
-            //     <Col s={4}>
-            //         <Row>
-            //             <Row className='tileTitle'>
-            //                 PROJECT
-            //             </Row>
-            //             <Row className='tileDescription'>
-            //                 SOMETHING SOMETHING SOMETHING
-            //             </Row>
-            //         </Row>
-            //     </Col>
-            // </div>
+                <Col s={4}>
+                    <Row>
+                        <Row className='tileTitle'>
+                            {this.props.title}
+                        </Row>
+                        <Row className='tileDescription'>
+                            {this.props.description}
+                        </Row>
+                    </Row>
+                </Col>
+            </div>
 
         )
 

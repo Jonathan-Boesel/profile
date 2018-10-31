@@ -10,6 +10,7 @@ import InnerContent from './innerContent.js'
 import Tile from './tile.js'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../App.css';
+import tileData from '../assets/tileObject.js';
 // import Delayed from 'react-delayed';
 
 let pageMax = Object.keys(data).length + 1;
@@ -87,7 +88,44 @@ class Content extends React.Component {
     render() {
         let pageCurrent = null;
         const tileIsActive = this.state.tileIsActive;
-        console.log('****' + tileIsActive)
+        let delay = 0;
+
+        const tileDiv = tileData.map(({ key, title, description }) => {
+            delay += .1;
+            // console.log(delay)
+            let newDelay = delay + 's'
+            let styles = { transitionDelay: newDelay };
+            // console.log(styles)
+
+            return <CSSTransition
+                    key={key}
+                    in={this.state.page ===3 && this.state.wait === false}
+                    timeout={1000}
+                    classNames={'tile' + key}
+                    // appear={true}
+                    unmountOnExit
+                    onExited={() => {
+                            this.setState({
+                              wait: false,
+                            });
+                          }}
+                    >
+                        <div style={styles} className='tileWrapper'>
+                            <Col s={4}>
+                                <Row>
+                                    <Row className='tileTitle'>
+                                        {title}
+                                    </Row>
+                                    <Row className='tileDescription'>
+                                        {description}
+                                    </Row>
+                                </Row>
+                            </Col>
+                        </div>
+                    </CSSTransition>
+        })
+        // console.log('Title thing' + tileDiv)
+        // console.log('****' + tileIsActive)
 
         // let singleTile =
         //     <Col s={3}>
@@ -129,13 +167,14 @@ class Content extends React.Component {
                         timeout={2000}
                         classNames={'proTiles'}
                         unmountOnExit
+                        appear={true}
                         onExited={() => {
                             this.setState({
                               wait: false,
                             });
                           }}
                     >
-                        <div className='redding'>Hi</div>
+                        <InnerContent page={0}></InnerContent>
                 </CSSTransition>
                 
                 <CSSTransition
@@ -149,21 +188,12 @@ class Content extends React.Component {
                             });
                           }}
                 >
-                    <div>next hi</div>
+                    <InnerContent page={1}></InnerContent>
                 </CSSTransition>
-            <CSSTransition
-                in={tileIsActive && this.state.wait === false}
-                timeout={2000}
-                classNames={'proTiles'}
-                unmountOnExit
-                        onExited={() => {
-                            this.setState({
-                              wait: false,
-                            });
-                          }}
-            >
-                <Tile></Tile>
-            </CSSTransition>
+          
+            
+                {tileDiv}
+           
         </div>
         );
     }

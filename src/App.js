@@ -7,6 +7,7 @@ import NavCombo from './components/navCombo.js';
 import Menu from './components/menu.js';
 import { Row, Col } from 'react-materialize';
 import Content from './components/content.js';
+import TestContent from './components/testContent.js';
 import MenuModal from './components/menuModal.js';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
