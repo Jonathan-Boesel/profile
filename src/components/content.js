@@ -14,7 +14,8 @@ import tileData from '../assets/tileObject.js';
 import TileModal from './tileModal.js';
 // import Delayed from 'react-delayed';
 
-let pageMax = Object.keys(data).length + 1;
+// let pageMax = Object.keys(data).length + 1;
+let pageMax = 3
 
 class Content extends React.Component {
 
@@ -24,7 +25,31 @@ class Content extends React.Component {
             page: 1,
             tileIsActive: false,
             tileModalIsActive: false,
-            wait: false
+            wait: false,
+            tileClicked: false,
+            lastTileClicked: null,
+            tiles: [
+                { tileActive1: false },
+                { tileActive2: false },
+                { tileActive3: false },
+                { tileActive4: false },
+                { tileActive5: false },
+                { tileActive6: false },
+            ],
+
+            tileExpand1: false,
+            tileExpand2: false,
+            tileExpand3: false,
+            tileExpand4: false,
+            tileExpand5: false,
+            tileExpand6: false,
+            tileTransition1: "tile",
+            tileTransition2: "tile",
+            tileTransition3: "tile",
+            tileTransition4: "tile",
+            tileTransition5: "tile",
+            tileTransition6: "tile",
+            duration: 2000
         };
     }
 
@@ -38,8 +63,102 @@ class Content extends React.Component {
         });
     }
 
+
+    // Using childfactory set new exit animation to expand then enter new identical element by using tileExpand# states to choose 
+    // and see if it will match up without a blink 
+    delayState = function() {
+        setTimeout(() => {
+            this.setState({
+                tileIsActive: !this.state.tileIsActive,
+                wait: true
+            })
+        }, 500);
+    };
+
+    handleTileExpandClick = (key) => {
+        console.log(key)
+        console.log(this.state.tiles)
+        let expandState = "tileExpand" + key
+        let expandWhich = {
+            ["tileExpand" + key]: !this.state[expandState]
+        }
+        console.log(expandWhich)
+        let tiles = [];
+        console.log("length" + this.state.tiles.length)
+
+        if (this.state.lastTileClicked !== key) {
+            for (let i = 0; i < this.state.tiles.length; i++) {
+                let keyCall = 1 + +i
+                let stateCall = "tileActive" + keyCall
+                // console.log(stateCall)
+                // console.log("New click state" + this.state.tiles[i][stateCall])
+                if (i !== key - 1) {
+
+                    tiles.push({
+                        [stateCall]: false
+                    })
+                }
+                else {
+                    tiles.push({
+                        [stateCall]: true
+                    })
+                }
+
+                // if (i !== key - 1) {
+                //     this.setState({
+                //         tiles[i][stateCall]: false
+                //     }, () => {
+                //         console.log(this.state.tiles[i][stateCall])
+                //     })
+                // }
+            }
+            console.log(tiles)
+            this.setState({
+                tiles,
+                tileClicked: true,
+                lastTileClicked: key
+            })
+        }
+        else if (this.state.lastTileClicked === key) {
+            let tiles = [
+                { tileActive1: true },
+                { tileActive2: true },
+                { tileActive3: true },
+                { tileActive4: true },
+                { tileActive5: true },
+                { tileActive6: true }
+            ]
+            this.setState({
+                tiles,
+                tileClicked: false,
+                lastTileClicked: null
+
+            });
+        }
+
+
+
+        // let tiles = this.state.tiles.map({
+
+        // })
+        // this.setState({
+        //     expandWhich,
+        // }, () => {
+
+        //     this.delayState()
+        //     console.log("new state " + this.state.tileExpand1)
+        //     console.log((this.state.page === 3 && this.state.wait === false && (this.state.tileModalIsActive === false || this.state[expandState] === true)))
+        // })
+
+    }
+
     componentDidMount() {
-        console.log(data);
+        let key = 1
+        let callKey = "tileActive" + key
+        // console.log("FFFFFFF" + this.state.tiles[0][callKey]);
+
+
+
         var handleScrollDown = () => {
             console.log("scroll");
             if (this.state.page < pageMax) {
@@ -84,46 +203,126 @@ class Content extends React.Component {
         $(window).bind('mousewheel', throttleBack);
 
     }
-    componentDidUpdate() {
-        if (this.state.page === 3 && this.state.tileIsActive !== true && this.state.tileModalIsActive !== true) {
+    componentWillUpdate() {
+        //Test
+        if (this.state.page === 3 && this.state.tileIsActive !== true && this.state.tileClicked !== true) {
+            let tiles = [
+                { tileActive1: true },
+                { tileActive2: true },
+                { tileActive3: true },
+                { tileActive4: true },
+                { tileActive5: true },
+                { tileActive6: true }
+            ]
             this.setState({
-                tileIsActive: true
+                tileIsActive: true,
+                tiles
+
+            });
+        }
+        else if (this.state.page !== 3 && this.state.tileIsActive === true) {
+            let tiles = [
+                { tileActive1: false },
+                { tileActive2: false },
+                { tileActive3: false },
+                { tileActive4: false },
+                { tileActive5: false },
+                { tileActive6: false }
+            ]
+            this.setState({
+                tileIsActive: false,
+                tileActive1: false,
+                tileActive2: false,
+                tileActive3: false,
+                tileActive4: false,
+                tileActive5: false,
+                tileActive6: false,
             })
         }
-        else if (this.state.page !== 3 && this.state.tileIsActive === true && this.state.tileModalIsActive === true) {
-            this.setState({
-                tileIsActive: false
-            })
-        }
+        //     if (this.state.page === 3 && this.state.tileIsActive !== true) {
+        //         this.setState({
+        //             tileIsActive: true
+        //         })
+        //     }
+        //     else if (this.state.page !== 3 && this.state.tileIsActive === true) {
+        //         this.setState({
+        //             tileIsActive: false
+        //         })
+        //     }
     }
+    //Original
+    //     if (this.state.page === 3 && this.state.tileIsActive !== true && this.state.tileModalIsActive !== true) {
+    //         this.setState({
+    //             tileIsActive: true
+    //         })
+    //     }
+    //     else if (this.state.page !== 3 && this.state.tileIsActive === true && this.state.tileModalIsActive === true) {
+    //         this.setState({
+    //             tileIsActive: false
+    //         })
+    //     }
+    // }
 
     render() {
         let pageCurrent = null;
-        const tileIsActive = this.state.tileIsActive;
+        const condition = this.state.tileIsActive;
         let delay = 0;
+        const childFactoryCreator = (classNames) => (
+            (child) => (
+                React.cloneElement(child, {
+                    classNames
+                })
+            )
+        );
 
-        const tileDiv = tileData.map(({ key, title, description }) => {
-            delay += .1;
-            // console.log(delay)
-            let newDelay = delay + 's'
-            let styles = { transitionDelay: newDelay };
-            // console.log(styles)
+        //Trial tileDiv construction
+        let tileDiv =
 
-            return <CSSTransition
+            tileData.map(({ key, title, description }) => {
+                delay += .1;
+                // console.log(delay)
+                let newDelay = delay + 's'
+                let styles = { transitionDelay: newDelay };
+                let expandStateClass = "this.state.tileExpand" + key
+                let expandClass = "tileExpand" + key
+                let classNames = this.state.tileTrasition + key
+                let tileKey = "tileActive" + key
+                console.log("** **")
+                console.log(this.state[expandClass])
+                // console.log("This tile state" + tileKey)
+                // console.log(this.state.tiles[key - 1][tileKey])
+                // let inIs;
+
+                // if (this.state.page === 3 && this.state.wait === false && this.state.tileModalIsActive === false) {
+                //     inIs = true;
+                // }
+                // else if (this.state[expandClass] === true) {
+                //     inIs = true
+                // }
+                // else {
+                //     inIs = false
+                // }
+
+                // console.log(inIs)
+
+                return <CSSTransition
                     key={key}
-                    in={this.state.page ===3 && this.state.wait === false && this.state.tileModalIsActive === false}
-                    timeout={1000}
+                    in={this.state.page === 3 && this.state.wait === false && this.state.tileModalIsActive === false && this.state.tiles[key-1][tileKey] === true}
+                    
+                    timeout={1500}
+
                     classNames={'tile'}
                     // appear={true}
                     unmountOnExit
+
                     onExited={() => {
                             this.setState({
                               wait: false,
                             });
                           }}
                     >
-                        <div style={styles} className='tileWrapper' onClick={() => this.handleTileClick()}>
-                            <Col s={4}>
+                        <div style={styles} className='tileWrapper' className={this.state.tileClicked ? "tileExpand" : "null"} onClick={() => this.handleTileExpandClick(key)}>
+                            <Col s={this.state.tileClicked ? "{12}" : "{4}"} className='tileStyle'>
                                 <Row>
                                     <Row className='tileTitle'>
                                         {title}
@@ -135,7 +334,71 @@ class Content extends React.Component {
                             </Col>
                         </div>
                     </CSSTransition>
-        })
+            })
+
+        //Original tileDiv construction
+        // let tileDiv = tileData.map(({ key, title, description }) => {
+        //     delay += .1;
+        //     // console.log(delay)
+        //     let newDelay = delay + 's'
+        //     let styles = { transitionDelay: newDelay };
+        //     let expandStateClass = "this.state.tileExpand" + key
+        //     let expandClass = "tileExpand" + key
+        //     let tileActive = "tileActive" + key;
+        //     let classNames = this.state.tileTrasition + key
+        //     if (this.state[expandClass] === true) {
+        //         console.log("Tile Clicked")
+        //     }
+
+        //     let inIs;
+
+        //     if (this.state.page === 3 && this.state.wait === false && this.state.tileModalIsActive === false) {
+        //         inIs = true;
+        //     }
+        //     else if (this.state[expandClass] === true) {
+        //         inIs = true
+        //     }
+        //     else {
+        //         inIs = false
+        //     }
+
+        //     let handleIn = () => {
+        //         inIs = true
+        //     }
+
+
+        //     return <CSSTransition
+        //             key={key}
+        //             in={this.state[tileActive]}
+
+        //             timeout={1500}
+
+        //             classNames={'tile'}
+        //             // appear={true}
+        //             unmountOnExit
+
+        //             onExited={() => {
+        //                     this.setState({
+        //                       wait: false,
+        //                     });
+        //                   }}
+        //             >
+        //                 <div style={styles} className='tileWrapper' className={this.state[expandClass] ? "tileExpand" : "null"} onClick={() => handleIn()} onClick={() => this.handleTileExpandClick(key)}>
+        //                     <Col s={4} className='tileStyle'>
+        //                         <Row>
+        //                             <Row className='tileTitle'>
+        //                                 {title}
+        //                             </Row>
+        //                             <Row className='tileDescription'>
+        //                                 {description}
+        //                             </Row>
+        //                         </Row>
+        //                     </Col>
+        //                 </div>
+        //             </CSSTransition>
+
+
+        // })
         // console.log('Title thing' + tileDiv)
         // console.log('****' + tileIsActive)
 
@@ -172,8 +435,13 @@ class Content extends React.Component {
         //         </CSSTransition>
         //     )
         // }
+        // let tilesPage;
+        // if (this.state.page === 3 && this.state.wait === false) {
+        //     tilesPage = tileDiv
+        // }
+
         return (
-            <Col s={12} l={10}>
+            <Col s={12}>
                 <CSSTransition
                         in={this.state.page === 1 && this.state.wait === false}
                         timeout={2000}
@@ -203,9 +471,12 @@ class Content extends React.Component {
                     <InnerContent page={1}></InnerContent>
                 </CSSTransition>
                 
+                
                 {tileDiv}
                 
-                <CSSTransition
+                
+                
+                {/*<CSSTransition
                     in={this.state.tileModalIsActive && this.state.wait === false}
                     timeout={2000}
                     classNames={'tileModal'}
@@ -217,7 +488,7 @@ class Content extends React.Component {
                           }}
                 >
                     <TileModal onClick={() => this.handleTileClick()}/>
-                </CSSTransition>
+                </CSSTransition>*/}
                 
         </Col>
         );

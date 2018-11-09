@@ -187,17 +187,39 @@ body {
   transition: opacity 2000ms ease-in;
 }
 
+.tileContainer {
+  margin-top: 2.5vh;
+}
+
+.tileStyle {
+  border-style: solid;
+  border-color: black;
+  /*outline-style: solid;
+  */
+  /*outline-color: red;*/
+  margin: 2px;
+  padding: .5%;
+}
+
+.tileExpand {
+  opacity: .5;
+  /*display: flex;*/
+  width: 100vw;
+  height: 100vh;
+  transition: all 2000ms;
+}
+
 /*Tile CSS for delayed animations*/
 
 .tile-appear {
-
-  /*transform: translateY(-100vh);*/
+  opacity: 0.01;
+  transform: translateY(-100vh);
 }
 
 .tile-appear-active {
   opacity: 1;
-  /*transform: translateY(0);*/
-  transition: all 2000ms ease-out;
+  transform: translateY(0);
+  transition: all 500ms ease-out;
 }
 
 .tile-enter {
@@ -237,7 +259,7 @@ body {
   opacity: 1;
 }
 
-.tileModal-exit-active {
+.modalMenu-exit-active {
   opacity: 0.01;
   transition: opacity 2000ms ease-in;
 }
