@@ -212,7 +212,7 @@ class Content extends React.Component {
         })
         var handleScrollDown = () => {
             console.log("scroll");
-            if (this.state.page < pageMax) {
+            if (this.state.page < pageMax && this.state.tileJustClosed !== true) {
                 this.setState({
                     page: this.state.page + 1,
                     wait: true,
@@ -228,7 +228,7 @@ class Content extends React.Component {
         };
         var handleScrollUp = () => {
             console.log("scroll");
-            if (this.state.page > 1) {
+            if (this.state.page > 1 && this.state.tileJustClosed !== true) {
                 this.setState({
                     page: this.state.page - 1,
                     wait: true,
@@ -285,7 +285,9 @@ class Content extends React.Component {
             this.setState({
                 tileIsActive: false,
                 tiles,
-                tileJustClosed: false
+                tileJustClosed: false,
+                tileClicked: false,
+                lastTileClicked: null,
             })
         }
         //     if (this.state.page === 3 && this.state.tileIsActive !== true) {
