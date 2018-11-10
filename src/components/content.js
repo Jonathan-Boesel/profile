@@ -354,7 +354,7 @@ class Content extends React.Component {
                     top: this.state.tileCoords.y,
                     width: "100%",
                     height: "100%",
-                    transform: "translateX(-" + this.state.tileCoords.x + "px)",
+                    transform: "translate(-" + this.state.tileCoords.x + "px, -" + this.state.tileCoords.y + "px)",
                     transition: "all 2000ms"
 
                 }
