@@ -12,6 +12,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../App.css';
 import tileData from '../assets/tileObject.js';
 import TileModal from './tileModal.js';
+import { StickyContainer, Sticky } from 'react-sticky';
 // import Delayed from 'react-delayed';
 
 // let pageMax = Object.keys(data).length + 1;
@@ -26,8 +27,17 @@ class Content extends React.Component {
             tileIsActive: false,
             tileModalIsActive: false,
             wait: false,
+            expandWait: false,
             tileClicked: false,
             lastTileClicked: null,
+            initilizeTiles: [
+                { tileActive1: false },
+                { tileActive2: false },
+                { tileActive3: false },
+                { tileActive4: false },
+                { tileActive5: false },
+                { tileActive6: false },
+            ],
             tiles: [
                 { tileActive1: false },
                 { tileActive2: false },
@@ -36,7 +46,13 @@ class Content extends React.Component {
                 { tileActive5: false },
                 { tileActive6: false },
             ],
-
+            tileCoords: {
+                x: null,
+                y: null
+            },
+            contentCoords: {},
+            tileJustClosed: false,
+            tileClosing: false,
             tileExpand1: false,
             tileExpand2: false,
             tileExpand3: false,
@@ -75,18 +91,29 @@ class Content extends React.Component {
         }, 500);
     };
 
-    handleTileExpandClick = (key) => {
-        console.log(key)
-        console.log(this.state.tiles)
+
+
+    handleTileExpandClick = (key, ID) => {
+
         let expandState = "tileExpand" + key
         let expandWhich = {
             ["tileExpand" + key]: !this.state[expandState]
         }
-        console.log(expandWhich)
+        // console.log(expandWhich)
         let tiles = [];
-        console.log("length" + this.state.tiles.length)
+        // console.log("length" + this.state.tiles.length)
 
         if (this.state.lastTileClicked !== key) {
+            let thisTile = document.getElementById(ID)
+            console.log(thisTile)
+            let coords = thisTile.getBoundingClientRect();
+            let tileCoords = {
+                x: coords.x - this.state.contentCoords.x,
+                y: coords.y - this.state.contentCoords.y
+            }
+
+            console.log(coords)
+            console.log(this.state.tiles)
             for (let i = 0; i < this.state.tiles.length; i++) {
                 let keyCall = 1 + +i
                 let stateCall = "tileActive" + keyCall
@@ -112,14 +139,20 @@ class Content extends React.Component {
                 //     })
                 // }
             }
-            console.log(tiles)
+            // console.log(tiles)
             this.setState({
                 tiles,
+                expandWait: true,
                 tileClicked: true,
-                lastTileClicked: key
+                lastTileClicked: key,
+                tileCoords: tileCoords,
+                tileJustClosed: false
             })
+            console.log(this.state.tileCoords.x)
         }
         else if (this.state.lastTileClicked === key) {
+            console.log(this.state.tileCoords.x)
+
             let tiles = [
                 { tileActive1: true },
                 { tileActive2: true },
@@ -128,12 +161,27 @@ class Content extends React.Component {
                 { tileActive5: true },
                 { tileActive6: true }
             ]
+            let reactivateTiles = () => {
+                setTimeout(() => {
+                    this.setState({
+                        tiles,
+                        tileJustClosed: false
+                    })
+                }, 2000)
+            }
+            let tileCoords = {
+                x: null,
+                y: null
+            }
             this.setState({
-                tiles,
+                tileCoords,
+                tileClosing: true,
+                // wait: true,
                 tileClicked: false,
-                lastTileClicked: null
-
+                lastTileClicked: null,
+                tileJustClosed: true
             });
+            reactivateTiles();
         }
 
 
@@ -157,15 +205,19 @@ class Content extends React.Component {
         let callKey = "tileActive" + key
         // console.log("FFFFFFF" + this.state.tiles[0][callKey]);
 
-
-
+        const contentEle = document.getElementById("content")
+        let contentCoords = contentEle.getBoundingClientRect();
+        this.setState({
+            contentCoords: contentCoords
+        })
         var handleScrollDown = () => {
             console.log("scroll");
             if (this.state.page < pageMax) {
                 this.setState({
                     page: this.state.page + 1,
                     wait: true,
-                    tileModalIsActive: false
+                    tileModalIsActive: false,
+                    tileJustClosed: false
                 }, function() {
                     console.log(this.state.page);
                 });
@@ -179,7 +231,8 @@ class Content extends React.Component {
             if (this.state.page > 1) {
                 this.setState({
                     page: this.state.page - 1,
-                    wait: true
+                    wait: true,
+                    tileJustClosed: false
                 }, function() {
                     console.log(this.state.page);
                 });
@@ -231,12 +284,8 @@ class Content extends React.Component {
             ]
             this.setState({
                 tileIsActive: false,
-                tileActive1: false,
-                tileActive2: false,
-                tileActive3: false,
-                tileActive4: false,
-                tileActive5: false,
-                tileActive6: false,
+                tiles,
+                tileJustClosed: false
             })
         }
         //     if (this.state.page === 3 && this.state.tileIsActive !== true) {
@@ -281,14 +330,41 @@ class Content extends React.Component {
             tileData.map(({ key, title, description }) => {
                 delay += .1;
                 // console.log(delay)
+                let ID = "ID" + key
                 let newDelay = delay + 's'
-                let styles = { transitionDelay: newDelay };
+                let styles = {}
+
+                if (this.state.tileJustClosed === false) {
+                    styles = { transitionDelay: newDelay, height: "40vh" };
+                }
+                else if (this.state.tileJustClosed === true) {
+                    styles = {
+                        position: "relative",
+                        top: this.state.tileCoords.y + "px",
+                        left: this.state.tileCoords.x + "px",
+                        height: "40vh",
+                        width: "33.333%"
+                    }
+                }
+                let newStyles = {
+                    position: "relative",
+                    left: this.state.tileCoords.x,
+                    top: this.state.tileCoords.y,
+                    width: "100%",
+                    height: "100%",
+                    transform: "translateX(-" + this.state.tileCoords.x + "px)",
+                    transition: "all 2000ms"
+
+                }
                 let expandStateClass = "this.state.tileExpand" + key
                 let expandClass = "tileExpand" + key
                 let classNames = this.state.tileTrasition + key
                 let tileKey = "tileActive" + key
-                console.log("** **")
-                console.log(this.state[expandClass])
+                let isSticky = this.state.tileClicked
+                let onClick = this.state.tileClicked
+                // console.log("** **")
+                // console.log(this.state[expandClass])
+                console.log(this.state.tileCoords.x)
                 // console.log("This tile state" + tileKey)
                 // console.log(this.state.tiles[key - 1][tileKey])
                 // let inIs;
@@ -314,28 +390,39 @@ class Content extends React.Component {
                     classNames={'tile'}
                     // appear={true}
                     unmountOnExit
-
                     onExited={() => {
                             this.setState({
                               wait: false,
+                              expandWait: false
                             });
                           }}
                     >
-                        <div style={styles} className='tileWrapper' className={this.state.tileClicked ? "tileExpand" : "null"} onClick={() => this.handleTileExpandClick(key)}>
-                            <Col s={this.state.tileClicked ? "{12}" : "{4}"} className='tileStyle'>
-                                <Row>
-                                    <Row className='tileTitle'>
-                                        {title}
-                                    </Row>
-                                    <Row className='tileDescription'>
-                                        {description}
-                                    </Row>
+                        <div id={ID} style={this.state.tileClicked && this.state.expandWait === false ? newStyles : styles} className='tileWrapper' className={"tileStyle"} onClick={() => this.handleTileExpandClick(key, ID)}>
+                            <Row>
+                                <Row className='tileTitle'>
+                                    {title}
                                 </Row>
-                            </Col>
+                                <Row className='tileDescription'>
+                                    {description}
+                                </Row>
+                            </Row>
+                            {/*{state => (
+                            <CSSTransition
+                            key={key}
+                            in={onClick}
+                            timeout={2000}
+                            classNames={'expandMe'}
+                            appear={true}
+                            >
+                                <div>
+                                    New expanded stuff
+                                </div>
+                            </CSSTransition>
+                            )}*/}
                         </div>
                     </CSSTransition>
             })
-
+        //this.state.tileClicked && this.state.expandWait === false ? "tileExpand" : 
         //Original tileDiv construction
         // let tileDiv = tileData.map(({ key, title, description }) => {
         //     delay += .1;
@@ -441,7 +528,7 @@ class Content extends React.Component {
         // }
 
         return (
-            <Col s={12}>
+            <Col s={12} className='content'>
                 <CSSTransition
                         in={this.state.page === 1 && this.state.wait === false}
                         timeout={2000}
@@ -471,8 +558,13 @@ class Content extends React.Component {
                     <InnerContent page={1}></InnerContent>
                 </CSSTransition>
                 
+                <Row >
+                    <Col s={11} className="tileDiv">
+                        {tileDiv}
+                    </Col>
+                    <Col s={1} className="fill"></Col>
+                </Row>
                 
-                {tileDiv}
                 
                 
                 

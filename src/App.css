@@ -7,6 +7,8 @@ body {
   overflow: hidden;
 }
 
+
+
 .box {
   margin: 0 auto;
   border: 0;
@@ -89,7 +91,8 @@ body {
 
 .content {
   padding-left: 0px !important;
-  height: 100%;
+  padding-right: 0px !important;
+  height: 80vh;
   background-color: navy;
 }
 
@@ -115,7 +118,11 @@ body {
   z-index: 2;
 }
 
-
+.tileDiv {
+  padding-left: 0px !important;
+  padding-right: 15px !important;
+  height: 80vh;
+}
 
 .Title {
   padding-left: -20px;
@@ -123,6 +130,9 @@ body {
 
 }
 
+.fill {
+  height: 80vh;
+}
 
 
 .bar1,
@@ -197,16 +207,57 @@ body {
   /*outline-style: solid;
   */
   /*outline-color: red;*/
-  margin: 2px;
-  padding: .5%;
+  /*margin: 2px;*/
+  width: 33.333%;
+  float: left;
+  transition: all 2000ms;
 }
 
 .tileExpand {
+  border-style: solid;
+  border-color: black;
+  /*outline-style: solid;
+  */
+  /*outline-color: red;*/
   opacity: .5;
   /*display: flex;*/
-  width: 100vw;
-  height: 100vh;
-  transition: all 2000ms;
+  /*transform-origin: 84vw;*/
+  /*height: 80vh;*/
+  transform: translateX(var(--new-X));
+  transition: height 2000ms;
+}
+
+.expandMe-appear {
+  opacity: 0.01;
+  height: inherit;
+}
+
+.expandMe-appear-active {
+  opacity: 1;
+  height: 80vh;
+  transition: all 500ms ease-out;
+}
+
+.expandMe-enter {
+  opacity: 0.01;
+  height: inherit;
+}
+
+.expandMe-enter-active {
+  opacity: 1;
+  height: 80vh;
+  transition: all 500ms ease-out;
+}
+
+.expandMe-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expandMe-exit-active {
+  opacity: 0.01;
+  transform: translateY(100vh);
+  transition: all 500ms ease-in;
 }
 
 /*Tile CSS for delayed animations*/

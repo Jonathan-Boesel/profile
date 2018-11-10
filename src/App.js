@@ -43,7 +43,7 @@ class App extends React.Component {
           </Row>
           <Row className='lowerBody'>
             <Col s={12} l={2} className='sideBar hide-on-med-and-down'></Col>
-            <Col s={12} l={10} className='content'>
+            <Col s={12} l={10} id="content" className='content'>
             
               <Content/>
             </Col>
