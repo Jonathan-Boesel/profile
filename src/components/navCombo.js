@@ -36,7 +36,7 @@ class NavCombo extends React.Component {
             <div>
                 <Row className='navBar'>
                     <Col s={6}>
-                        <p id="logo">Jonathan Boesel</p>
+                        <p className="flow-text" id="logo">Jonathan Boesel</p>
                     </Col>
                     <Col s={4}></Col>
                     <Col s={2} className="right-align">

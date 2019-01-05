@@ -24,12 +24,20 @@ class Content extends React.Component {
         super(props);
         this.state = {
             page: 1,
+            //no tile is clicked in initial state
             tileIsActive: false,
+            //modal is not open in initial state
             tileModalIsActive: false,
+            //waits for transition to finish before starting next page trans.
             wait: false,
+            //waits for tiles to fall before expanding
             expandWait: false,
+            //no tile is clicked in initial state
             tileClicked: false,
+            //no previous tile clicked in initial state (used when a tile is expanded)
             lastTileClicked: null,
+            isExpanding: false,
+            tileIsExpanded: false,
             initilizeTiles: [
                 { tileActive1: false },
                 { tileActive2: false },
@@ -101,12 +109,16 @@ class Content extends React.Component {
         }
         // console.log(expandWhich)
         let tiles = [];
+
         // console.log("length" + this.state.tiles.length)
 
+        //If the tile just clicked is not the same as the last tile clicked,
+        //it is a new tile and we need to expand it
         if (this.state.lastTileClicked !== key) {
             let thisTile = document.getElementById(ID)
             console.log(thisTile)
             let coords = thisTile.getBoundingClientRect();
+            //Save the position coords for use when the tile shrinks back into position
             let tileCoords = {
                 x: coords.x - this.state.contentCoords.x,
                 y: coords.y - this.state.contentCoords.y
@@ -114,6 +126,9 @@ class Content extends React.Component {
 
             console.log(coords)
             console.log(this.state.tiles)
+
+            //Construct tiles object in form of 'tileActive#: true/false' to 
+            //push to state
             for (let i = 0; i < this.state.tiles.length; i++) {
                 let keyCall = 1 + +i
                 let stateCall = "tileActive" + keyCall
@@ -140,17 +155,35 @@ class Content extends React.Component {
                 // }
             }
             // console.log(tiles)
+
+            //waits for tile to expand to change content so animations are smoother
+            //*****BREAKS IF TILE IS CLICKED AGAIN BEFORE TIMEOUT!!!!!******
+            let tileExpanded = () => {
+                setTimeout(() => {
+                    this.setState({
+                        tileIsExpanding: false,
+                        tileIsExpanded: true
+                    })
+                }, 3000)
+            }
+
             this.setState({
                 tiles,
+                //waits to expand
                 expandWait: true,
+                //waits on actual expantion
+                tileIsExpanding: true,
                 tileClicked: true,
                 lastTileClicked: key,
                 tileCoords: tileCoords,
                 tileJustClosed: false
-            })
+            });
+            tileExpanded()
             console.log(this.state.tileCoords.x)
         }
-        else if (this.state.lastTileClicked === key) {
+        //If the tile just clicked is the same as the last tile clicked, 
+        //the tile will be closing and we need reset 
+        else if (this.state.lastTileClicked === key && this.state.tileIsExpanding === false) {
             console.log(this.state.tileCoords.x)
 
             let tiles = [
@@ -174,6 +207,7 @@ class Content extends React.Component {
                 y: null
             }
             this.setState({
+                tileIsExpanded: false,
                 tileCoords,
                 tileClosing: true,
                 // wait: true,
@@ -216,6 +250,7 @@ class Content extends React.Component {
                 this.setState({
                     page: this.state.page + 1,
                     wait: true,
+                    tileIsExpanded: false,
                     tileModalIsActive: false,
                     tileJustClosed: false
                 }, function() {
@@ -283,6 +318,7 @@ class Content extends React.Component {
                 { tileActive6: false }
             ]
             this.setState({
+                tileIsExpanded: false,
                 tileIsActive: false,
                 tiles,
                 tileJustClosed: false,
@@ -329,12 +365,34 @@ class Content extends React.Component {
         //Trial tileDiv construction
         let tileDiv =
 
-            tileData.map(({ key, title, description }) => {
+            tileData.map(({ key, title, description, description2, image }) => {
                 delay += .1;
                 // console.log(delay)
                 let ID = "ID" + key
                 let newDelay = delay + 's'
                 let styles = {}
+                let tileContent;
+                // let tileChange = () => {
+                //     setTimeout(() => {
+                //         tileContent = <div>
+                //         <div>{description2}</div>
+                //         <div>{description2}</div>
+                //         <div>{description2}</div>
+                //         </div>
+                //     }, 2000)
+                // }
+                //Show new tile content when a tile expands, wait for it to
+                //start expanding so other tiles are not shown to change
+                if (this.state.tileIsExpanded === true) {
+                    tileContent = <div>
+                    <div>{description2}</div>
+                    <div>{description2}</div>
+                    <div>{description2}</div>
+                    </div>
+                }
+                else if (this.state.tileIsExpanded === false) {
+                    tileContent = description
+                }
 
                 if (this.state.tileJustClosed === false) {
                     styles = { transitionDelay: newDelay, height: "40vh" };
@@ -357,6 +415,9 @@ class Content extends React.Component {
                     transform: "translate(-" + this.state.tileCoords.x + "px, -" + this.state.tileCoords.y + "px)",
                     transition: "all 2000ms"
 
+                }
+                let newTitleFont = {
+                    fontSize: "2vw"
                 }
                 let expandStateClass = "this.state.tileExpand" + key
                 let expandClass = "tileExpand" + key
@@ -400,12 +461,52 @@ class Content extends React.Component {
                           }}
                     >
                         <div id={ID} style={this.state.tileClicked && this.state.expandWait === false ? newStyles : styles} className='tileWrapper' className={"tileStyle"} onClick={() => this.handleTileExpandClick(key, ID)}>
+                            
+                                <div >
+                                    <div className='tileImageContainer'>
+                                        <div className='tileImage z-depth-5' style= {{backgroundImage: 'url(' + image + ')', float: "left"}}>
+                                            <a />
+                                        </div>
+                                    </div>
+                                    <div  style={this.state.tileClicked && this.state.expandWait === false ? newTitleFont : null}>
+                                        <Row className='flow-text'>
+                                            {title}
+                                        </Row>
+                                        <Row className='tileDescription flow-text'>
+                                            {tileContent}
+                                        </Row>
+                                    </div>
+                                </div>
+                            {/*{state => (
+                            <CSSTransition
+                            key={key}
+                            in={onClick}
+                            timeout={2000}
+                            classNames={'expandMe'}
+                            appear={true}
+                            >
+                                <div>
+                                    New expanded stuff
+                                </div>
+                            </CSSTransition>
+                            )}*/}
+                        </div>                    
+                        {/*<div id={ID} style={this.state.tileClicked && this.state.expandWait === false ? newStyles : styles} className='tileWrapper' className={"tileStyle"} onClick={() => this.handleTileExpandClick(key, ID)}>
                             <Row>
-                                <Row className='tileTitle'>
-                                    {title}
-                                </Row>
-                                <Row className='tileDescription'>
-                                    {description}
+                                <Row >
+                                    <Col s={4} className='tileTitleContainer'>
+                                        <div className='tileImage z-depth-5' style= {{backgroundImage: 'url(' + image + ')'}}>
+                                            <a />
+                                        </div>
+                                    </Col>
+                                    <Col s={8} className='flow-text' style={this.state.tileClicked && this.state.expandWait === false ? newTitleFont : null}>
+                                        <Row>
+                                            {title}
+                                        </Row>
+                                        <Row className='tileDescription'>
+                                            {tileContent}
+                                        </Row>
+                                    </Col>
                                 </Row>
                             </Row>
                             {/*{state => (
@@ -421,7 +522,6 @@ class Content extends React.Component {
                                 </div>
                             </CSSTransition>
                             )}*/}
-                        </div>
                     </CSSTransition>
             })
         //this.state.tileClicked && this.state.expandWait === false ? "tileExpand" : 

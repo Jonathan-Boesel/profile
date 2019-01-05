@@ -10,11 +10,11 @@ class TileModal extends React.Component {
 
         return (
 
-            <div className="tileModal">
+            <div className="tileModal flow-text">
                 <div style= {{color: 'red'}} onClick={() => this.props.onClick()}>
                     X
                 </div>
-                <div className="tileModalContent">
+                <div className="tileModalContent flow-text">
                     <p>ABOUT ME</p>
                     <p>PROJECT 1</p>
                     <p>PROJECT 2</p>

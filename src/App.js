@@ -37,12 +37,12 @@ class App extends React.Component {
       <Router>
         <div>
           <Row>
-            <Col s={12}>
+            <Col s={12} className='z-depth-5'  >
               <NavCombo isActive={this.state.isActive} onClick={() => this.handleClick()}/>
             </Col>
           </Row>
-          <Row className='lowerBody'>
-            <Col s={12} l={2} className='sideBar hide-on-med-and-down'></Col>
+          <Row className='lowerBody z-depth-5'>
+            <Col s={12} l={2} className='sideBar hide-on-med-and-down z-depth-5'></Col>
             <Col s={12} l={10} id="content" className='content'>
             
               <Content/>

@@ -76,7 +76,7 @@ body {
 }
 
 .bodyContainer {
-  background-color: blue;
+  /*background-color: blue;*/
 }
 
 .lowerBody {
@@ -86,19 +86,18 @@ body {
 
 .sideBar {
   height: 100%;
-  background-color: teal;
+  /*background-color: teal;*/
 }
 
 .content {
   padding-left: 0px !important;
   padding-right: 0px !important;
   height: 80vh;
-  background-color: navy;
+  /*background-color: navy;*/
 }
 
 .contentImage {
   position: relative;
-  z-index: 1;
   height: 80vh;
   background-size: cover;
   /*background-image: url(assets/abstract.jpg);*/
@@ -110,6 +109,46 @@ body {
   display: block;
   /*position: relative;*/
 }
+
+.tileImageContainer {
+  width: 33.333%;
+}
+
+.tileImage {
+
+  width: 100%;
+
+  padding-top: 100%;
+  background-size: cover;
+}
+
+/*.tileImage {
+  */
+
+/*  position: relative;*/
+
+/*  z-index: 1;*/
+
+/*  height: 10vh;*/
+
+/*  padding-left: 100%;*/
+
+/*  background-size: cover;*/
+
+/*  background-repeat: no-repeat;*/
+
+/*  background-position: center;*/
+
+/*background-color: red;*/
+
+/*background-size: cover;
+  */
+
+/*  display: block;*/
+
+/*position: relative;*/
+
+/*}*/
 
 .contentText {
   padding-left: 0px !important;

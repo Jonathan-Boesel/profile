@@ -11,22 +11,22 @@ class InnerContent extends React.Component {
             <Row>
                 <Col s={3} className='contentText'>
                     <Row>
-                        <Col s={12} className="left-align Title">
+                        <Col s={12} className="left-align Title flow-text">
                             {data[this.props.page].title}
                         </Col>
                     </Row>
                     <Row>
-                        <Col s={12} className="p1">
+                        <Col s={12} className="p1 flow-text">
                             <p>{data[this.props.page].l1}</p>
                         </Col>
                     </Row>
                     <Row>
-                        <Col s={12} className="p2">
+                        <Col s={12} className="p2 flow-text">
                             <p>{data[this.props.page].l2}</p>
                         </Col>
                     </Row>
                     <Row>
-                        <Col s={12} className="p3">
+                        <Col s={12} className="p3 flow-text">
                         <If condition={this.props.page > 1}>
                             <Link to='/viewPage'>
                                 <p>{data[this.props.page].l3}</p>
