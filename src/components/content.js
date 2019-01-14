@@ -365,13 +365,15 @@ class Content extends React.Component {
         //Trial tileDiv construction
         let tileDiv =
 
-            tileData.map(({ key, title, description, description2, image }) => {
+            tileData.map(({ key, title, description, description2, image, link }) => {
                 delay += .1;
                 // console.log(delay)
                 let ID = "ID" + key
                 let newDelay = delay + 's'
                 let styles = {}
                 let tileContent;
+                let toggle;
+                let toggle2;
                 // let tileChange = () => {
                 //     setTimeout(() => {
                 //         tileContent = <div>
@@ -384,26 +386,31 @@ class Content extends React.Component {
                 //Show new tile content when a tile expands, wait for it to
                 //start expanding so other tiles are not shown to change
                 if (this.state.tileIsExpanded === true) {
-                    tileContent = <div>
-                    <div>{description2}</div>
-                    <div>{description2}</div>
-                    <div>{description2}</div>
-                    </div>
+
+                    tileContent = null;
+                    toggle = "block"
+                    // tileContent = <div>
+                    // <div>{description2}</div>
+                    // <div>{description2}</div>
+                    // <div>{description2}</div>
+                    // </div>
                 }
                 else if (this.state.tileIsExpanded === false) {
+                    toggle = "none"
                     tileContent = description
                 }
 
                 if (this.state.tileJustClosed === false) {
-                    styles = { transitionDelay: newDelay, height: "40vh" };
+                    styles = { transitionDelay: newDelay, height: "39vh" };
                 }
                 else if (this.state.tileJustClosed === true) {
                     styles = {
                         position: "relative",
                         top: this.state.tileCoords.y + "px",
                         left: this.state.tileCoords.x + "px",
-                        height: "40vh",
-                        width: "33.333%"
+                        height: "39vh",
+                        width: "32.33%",
+                        margin: ".5%"
                     }
                 }
                 let newStyles = {
@@ -460,9 +467,9 @@ class Content extends React.Component {
                             });
                           }}
                     >
-                        <div id={ID} style={this.state.tileClicked && this.state.expandWait === false ? newStyles : styles} className='tileWrapper' className={"tileStyle"} onClick={() => this.handleTileExpandClick(key, ID)}>
+                        <div id={ID} style={this.state.tileClicked && this.state.expandWait === false ? newStyles : styles} className = "tileStyle z-depth-5" onClick={() => this.handleTileExpandClick(key, ID)}>
                             
-                                <div >
+                                {/*<div>
                                     <div className='tileImageContainer'>
                                         <div className='tileImage z-depth-5' style= {{backgroundImage: 'url(' + image + ')', float: "left"}}>
                                             <a />
@@ -472,10 +479,38 @@ class Content extends React.Component {
                                         <Row className='flow-text'>
                                             {title}
                                         </Row>
-                                        <Row className='tileDescription flow-text'>
+                                        <Row style={{float: "left", display: toggle}}>
+                                            <div>{description2}</div>
+                                            <div>{description2}</div>
+                                            <div>{description2}</div>
+                                        </Row>
+                                        <Row className='tileDescription'>
                                             {tileContent}
                                         </Row>
                                     </div>
+                                </div>*/}
+                                <div>
+                                    <Row>
+                                        <Col s={4} className='tileImageContainer'>
+                                            <Row className='tileImage z-depth-5' style= {{backgroundImage: 'url(' + image + ')', float: "left"}}>
+                                                <a />
+                                            </Row >
+                                            <Row style={{display: toggle}}>
+                                                {link}
+                                            </Row>
+                                        </Col>
+                                        <Col s={8}>
+                                            <Row className='flow-text' style={{textAlign: 'center', paddingTop: '5vh'}}>
+                                                {title}
+                                            </Row>
+                                            <Row style={{float: "left", display: toggle}}>
+                                                <div>{description2}</div>
+                                            </Row>
+                                        </Col>
+                                    </Row>
+                                    <Row className='tileDescription'>
+                                        {tileContent}
+                                    </Row>
                                 </div>
                             {/*{state => (
                             <CSSTransition
@@ -661,10 +696,10 @@ class Content extends React.Component {
                 </CSSTransition>
                 
                 <Row >
-                    <Col s={11} className="tileDiv">
+                    <Col s={11} l={12}className="tileDiv">
                         {tileDiv}
                     </Col>
-                    <Col s={1} className="fill"></Col>
+                    <Col s={0} l={1} className="fill hide-on-med-and-down"></Col>
                 </Row>
                 
                 

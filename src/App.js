@@ -35,17 +35,22 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
-          <Row>
-            <Col s={12} className='z-depth-5'  >
+        <div className='totalContain'>
+          <Row className='upperBody'>
+            <Col s={12} className="z-depth-3"  >
               <NavCombo isActive={this.state.isActive} onClick={() => this.handleClick()}/>
             </Col>
           </Row>
-          <Row className='lowerBody z-depth-5'>
-            <Col s={12} l={2} className='sideBar hide-on-med-and-down z-depth-5'></Col>
-            <Col s={12} l={10} id="content" className='content'>
-            
-              <Content/>
+          <Row className='lowerBody'>
+            <Col s={12} l={2} className="matSidebar hide-on-med-and-down">
+              <div className='sideBar hide-on-med-and-down z-depth-5 side-adjust'>
+              
+              </div>
+            </Col>
+            <Col s={12} l={10} >
+              <div id="content" className='content'>
+                <Content/>
+              </div>
             </Col>
           </Row>
           <Row>
