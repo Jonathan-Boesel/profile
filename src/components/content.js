@@ -36,7 +36,9 @@ class Content extends React.Component {
             tileClicked: false,
             //no previous tile clicked in initial state (used when a tile is expanded)
             lastTileClicked: null,
-            isExpanding: false,
+            //state for when tile is currently ANIMATING, handles double click edge case
+            tileIsExpanding: false,
+            //tile is/is not in its expanded state
             tileIsExpanded: false,
             initilizeTiles: [
                 { tileActive1: false },
@@ -114,7 +116,7 @@ class Content extends React.Component {
 
         //If the tile just clicked is not the same as the last tile clicked,
         //it is a new tile and we need to expand it
-        if (this.state.lastTileClicked !== key) {
+        if (this.state.lastTileClicked !== key && this.state.tileIsExpanding === false) {
             let thisTile = document.getElementById(ID)
             console.log(thisTile)
             //Save original position of tile for when it shrinks back down
@@ -196,7 +198,7 @@ class Content extends React.Component {
         //If the tile just clicked is the same as the last tile clicked, 
         //the tile will be closing and we need reset 
         else if (this.state.lastTileClicked === key && this.state.tileIsExpanding === false) {
-            console.log(this.state.tileCoords.x)
+            console.log("last click = key and tileIsExpanding = false")
 
             let tiles = [
                 { tileActive1: true },
@@ -209,6 +211,7 @@ class Content extends React.Component {
             let reactivateTiles = () => {
                 setTimeout(() => {
                     this.setState({
+                        tileIsExpanding: false,
                         tiles,
                         tileJustClosed: false
                     })
@@ -220,6 +223,7 @@ class Content extends React.Component {
             }
             this.setState({
                 tileIsExpanded: false,
+                tileIsExpanding: true,
                 tileCoords,
                 tileClosing: true,
                 // wait: true,
