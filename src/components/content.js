@@ -120,13 +120,13 @@ class Content extends React.Component {
             //Save original position of tile for when it shrinks back down
             let coords = thisTile.getBoundingClientRect();
             let cssMargin = (this.state.contentCoords.width * .005)
-            let coordsX = coords.x - cssMargin
-            let coordsY = coords.y - cssMargin
+            let coordsX = coords.left - cssMargin
+            let coordsY = coords.top - cssMargin
             console.log(cssMargin)
             //Calculate difference in position for translate when tile expands
             let tileCoords = {
-                x: Math.abs(coordsX - this.state.contentCoords.x),
-                y: Math.abs(coordsY - this.state.contentCoords.y)
+                x: Math.abs(coordsX - this.state.contentCoords.left),
+                y: Math.abs(coordsY - this.state.contentCoords.top)
             }
 
             console.log(coords)
