@@ -117,15 +117,27 @@ class Content extends React.Component {
         if (this.state.lastTileClicked !== key) {
             let thisTile = document.getElementById(ID)
             console.log(thisTile)
+            //Save original position of tile for when it shrinks back down
             let coords = thisTile.getBoundingClientRect();
-            //Save the position coords for use when the tile shrinks back into position
+            let cssMargin = (this.state.contentCoords.width * .005)
+            let coordsX = coords.x - cssMargin
+            let coordsY = coords.y - cssMargin
+            console.log(cssMargin)
+            //Calculate difference in position for translate when tile expands
             let tileCoords = {
-                x: coords.x - this.state.contentCoords.x,
-                y: coords.y - this.state.contentCoords.y
+                x: Math.abs(coordsX - this.state.contentCoords.x),
+                y: Math.abs(coordsY - this.state.contentCoords.y)
             }
 
             console.log(coords)
+            console.log(coordsX)
+            console.log("xxxx")
+            console.log(this.state.contentCoords)
             console.log(this.state.tiles)
+            console.log("??????")
+            console.log(tileCoords.x)
+            console.log(tileCoords.y)
+            console.log("???????")
 
             //Construct tiles object in form of 'tileActive#: true/false' to 
             //push to state
