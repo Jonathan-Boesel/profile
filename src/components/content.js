@@ -40,6 +40,7 @@ class Content extends React.Component {
             tileIsExpanding: false,
             //tile is/is not in its expanded state
             tileIsExpanded: false,
+            fall: false,
             isHovered1: false,
             isHovered2: false,
             isHovered3: false,
@@ -109,16 +110,20 @@ class Content extends React.Component {
 
     handleHoverIn = (key) => {
         let state = "isHovered" + key
-        this.setState({
-            [state]: true
-        });
+        if (this.state.wait === false && this.state.fall === false) {
+            this.setState({
+                [state]: true
+            });
+        }
     }
 
     handleHoverOut = (key) => {
         let state = "isHovered" + key
-        this.setState({
-            [state]: false
-        });
+        if (this.state.wait === false && this.state.fall === false) {
+            this.setState({
+                [state]: false
+            });
+        }
     }
 
     handleTileExpandClick = (key, ID) => {
@@ -503,6 +508,16 @@ class Content extends React.Component {
                     classNames={'tile'}
                     // appear={true}
                     unmountOnExit
+                    onEnter={() => {
+                        this.setState({
+                            fall:true
+                        })
+                    }}
+                    onEntered={() => {
+                        this.setState({
+                            fall:false
+                        })
+                    }}
                     onExited={() => {
                             this.setState({
                               wait: false,
