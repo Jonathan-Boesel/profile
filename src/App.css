@@ -274,7 +274,7 @@ body {
   /*margin: 2px;*/
   width: 32.3333%;
   float: left;
-  transition: all 2000ms;
+  transition: width 1s, height 1s, transform 1s;
   margin: .5%;
 }
 
