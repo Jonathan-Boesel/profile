@@ -231,7 +231,7 @@ body {
 .proTiles-appear-active {
   opacity: 1;
   /*transform: translateY(0);*/
-  transition: all 2000ms ease-out;
+  transition: all 1000ms ease-out;
 }
 
 .proTiles-enter {
@@ -242,7 +242,7 @@ body {
 .proTiles-enter-active {
   opacity: 1;
   /*transform: translateY(0);*/
-  transition: all 2000ms ease-out;
+  transition: all 1000ms ease-out;
 }
 
 .proTiles-exit {
@@ -251,7 +251,7 @@ body {
 
 .proTiles-exit-active {
   opacity: 0.01;
-  transition: opacity 2000ms ease-in;
+  transition: opacity 1000ms ease-in;
 }
 
 .tileContainer {
@@ -278,6 +278,11 @@ body {
   margin: .5%;
 }
 
+.hoverBorder {
+  border-style: solid;
+  border-color: teal;
+}
+
 .tileExpand {
   border-style: solid;
   border-color: black;
@@ -292,38 +297,59 @@ body {
   transition: height 2000ms;
 }
 
-.expandMe-appear {
-  opacity: 0.01;
-  height: inherit;
-}
+/*.expandMe-appear {*/
 
-.expandMe-appear-active {
-  opacity: 1;
-  height: 80vh;
-  transition: all 500ms ease-out;
-}
+/*  opacity: 0.01;*/
 
-.expandMe-enter {
-  opacity: 0.01;
-  height: inherit;
-}
+/*  height: inherit;*/
 
-.expandMe-enter-active {
-  opacity: 1;
-  height: 80vh;
-  transition: all 500ms ease-out;
-}
+/*}*/
 
-.expandMe-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
+/*.expandMe-appear-active {*/
 
-.expandMe-exit-active {
-  opacity: 0.01;
-  transform: translateY(100vh);
-  transition: all 500ms ease-in;
-}
+/*  opacity: 1;*/
+
+/*  height: 80vh;*/
+
+/*  transition: all 500ms ease-out;*/
+
+/*}*/
+
+/*.expandMe-enter {*/
+
+/*  opacity: 0.01;*/
+
+/*  height: inherit;*/
+
+/*}*/
+
+/*.expandMe-enter-active {*/
+
+/*  opacity: 1;*/
+
+/*  height: 80vh;*/
+
+/*  transition: all 500ms ease-out;*/
+
+/*}*/
+
+/*.expandMe-exit {*/
+
+/*  opacity: 1;*/
+
+/*  transform: translateY(0);*/
+
+/*}*/
+
+/*.expandMe-exit-active {*/
+
+/*  opacity: 0.01;*/
+
+/*  transform: translateY(100vh);*/
+
+/*  transition: all 500ms ease-in;*/
+
+/*}*/
 
 /*Tile CSS for delayed animations*/
 

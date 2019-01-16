@@ -24,7 +24,7 @@ class Content extends React.Component {
         super(props);
         this.state = {
             page: 1,
-            //no tile is clicked in initial state
+            //no tile is showing in initial state (page = 1 not 2)
             tileIsActive: false,
             //modal is not open in initial state
             tileModalIsActive: false,
@@ -40,21 +40,24 @@ class Content extends React.Component {
             tileIsExpanding: false,
             //tile is/is not in its expanded state
             tileIsExpanded: false,
+            //state to cancel tile hover function when tiles are reappearing
             fall: false,
+            //1-6 states to handle hovered conditions
             isHovered1: false,
             isHovered2: false,
             isHovered3: false,
             isHovered4: false,
             isHovered5: false,
             isHovered6: false,
-            initilizeTiles: [
-                { tileActive1: false },
-                { tileActive2: false },
-                { tileActive3: false },
-                { tileActive4: false },
-                { tileActive5: false },
-                { tileActive6: false },
-            ],
+            // initilizeTiles: [
+            //     { tileActive1: false },
+            //     { tileActive2: false },
+            //     { tileActive3: false },
+            //     { tileActive4: false },
+            //     { tileActive5: false },
+            //     { tileActive6: false },
+            // ],
+            //Tile array for which tile should remain when one is clicked 
             tiles: [
                 { tileActive1: false },
                 { tileActive2: false },
@@ -69,19 +72,19 @@ class Content extends React.Component {
             },
             contentCoords: {},
             tileJustClosed: false,
-            tileClosing: false,
-            tileExpand1: false,
-            tileExpand2: false,
-            tileExpand3: false,
-            tileExpand4: false,
-            tileExpand5: false,
-            tileExpand6: false,
-            tileTransition1: "tile",
-            tileTransition2: "tile",
-            tileTransition3: "tile",
-            tileTransition4: "tile",
-            tileTransition5: "tile",
-            tileTransition6: "tile",
+            // tileClosing: false,
+            // tileExpand1: false,
+            // tileExpand2: false,
+            // tileExpand3: false,
+            // tileExpand4: false,
+            // tileExpand5: false,
+            // tileExpand6: false,
+            // tileTransition1: "tile",
+            // tileTransition2: "tile",
+            // tileTransition3: "tile",
+            // tileTransition4: "tile",
+            // tileTransition5: "tile",
+            // tileTransition6: "tile",
             duration: 2000
         };
     }
@@ -108,18 +111,19 @@ class Content extends React.Component {
         }, 500);
     };
 
+    //Handles hover over for border changes, covers falling, expanding and expanded
+    //to ignore hovers
     handleHoverIn = (key) => {
         let state = "isHovered" + key
-        if (this.state.wait === false && this.state.fall === false) {
+        if (this.state.fall === false && !this.state.tileIsExpanded && !this.state.tileIsExpanding) {
             this.setState({
                 [state]: true
             });
         }
     }
-
     handleHoverOut = (key) => {
         let state = "isHovered" + key
-        if (this.state.wait === false && this.state.fall === false) {
+        if (this.state.fall === false && !this.state.tileIsExpanded && !this.state.tileIsExpanding) {
             this.setState({
                 [state]: false
             });
@@ -140,15 +144,17 @@ class Content extends React.Component {
         //If the tile just clicked is not the same as the last tile clicked,
         //it is a new tile and we need to expand it
         if (this.state.lastTileClicked !== key && this.state.tileIsExpanding === false) {
-            let thisTile = document.getElementById(ID)
-            console.log(thisTile)
+
             //Save original position of tile for when it shrinks back down
+            let thisTile = document.getElementById(ID)
             let coords = thisTile.getBoundingClientRect();
             let cssMargin = (this.state.contentCoords.width * .005)
             let coordsX = coords.left - cssMargin
             let coordsY = coords.top - cssMargin
             console.log(cssMargin)
-            //Calculate difference in position for translate when tile expands
+
+            //Calculate difference in initial tile position and parent container's
+            //top left corner for it to translate when tile expands
             let tileCoords = {
                 x: Math.abs(coordsX - this.state.contentCoords.left),
                 y: Math.abs(coordsY - this.state.contentCoords.top)
@@ -193,15 +199,14 @@ class Content extends React.Component {
             }
             // console.log(tiles)
 
-            //waits for tile to expand to change content so animations are smoother
-            //*****BREAKS IF TILE IS CLICKED AGAIN BEFORE TIMEOUT!!!!!******
+            //Waits for tile to expand to change content so animations are smoother
             let tileExpanded = () => {
                 setTimeout(() => {
                     this.setState({
                         tileIsExpanding: false,
                         tileIsExpanded: true
                     })
-                }, 3000)
+                }, 2000)
             }
             let hoverState = "isHovered" + key
             this.setState({
@@ -239,7 +244,7 @@ class Content extends React.Component {
                         tiles,
                         tileJustClosed: false
                     })
-                }, 2000)
+                }, 500)
             }
             let tileCoords = {
                 x: null,
@@ -278,7 +283,7 @@ class Content extends React.Component {
         let key = 1
         let callKey = "tileActive" + key
         // console.log("FFFFFFF" + this.state.tiles[0][callKey]);
-
+        //Set content div coords for user viewport
         const contentEle = document.getElementById("content")
         let contentCoords = contentEle.getBoundingClientRect();
         this.setState({
@@ -317,6 +322,7 @@ class Content extends React.Component {
                 return;
             }
         };
+        //Throttles scroll events to wait for transition animations
         var throttleBack = _.throttle(function(event) {
             if (event.originalEvent.wheelDelta >= 0) {
                 console.log('Scroll up');
@@ -334,6 +340,8 @@ class Content extends React.Component {
     }
     componentWillUpdate() {
         //Test
+        //Handles when to show the tile page based on page state. Extra conditions
+        //to keep tiles from resetting when one is expanded
         if (this.state.page === 2 && this.state.tileIsActive !== true && this.state.tileClicked !== true) {
             let tiles = [
                 { tileActive1: true },
@@ -349,6 +357,7 @@ class Content extends React.Component {
 
             });
         }
+        //Handles a page change when a tile is currently expanded
         else if (this.state.page !== 2 && this.state.tileIsActive === true) {
             let tiles = [
                 { tileActive1: false },
@@ -394,6 +403,7 @@ class Content extends React.Component {
     render() {
         let pageCurrent = null;
         const condition = this.state.tileIsActive;
+        //Sets initial delay for first tile - 0seconds
         let delay = 0;
         const childFactoryCreator = (classNames) => (
             (child) => (
@@ -408,13 +418,16 @@ class Content extends React.Component {
         let tileDiv =
 
             tileData.map(({ key, title, description, description2, image, link }) => {
+                //Adds a .1s compounding delay to each tile so they cascade in
                 delay += .1;
                 // console.log(delay)
+                //Dynamic hover event conditions
                 let classNamesConst = require('classnames')
                 let isHovered = "isHovered" + key
                 let tileClass = classNamesConst({
                     "tileStyle": true,
-                    "z-depth-5": !this.state[isHovered]
+                    "z-depth-5": !this.state[isHovered],
+                    "hoverBorder": this.state[isHovered]
                 });
                 let ID = "ID" + key
                 let newDelay = delay + 's'
@@ -468,7 +481,7 @@ class Content extends React.Component {
                     width: "100%",
                     height: "100%",
                     transform: "translate(-" + this.state.tileCoords.x + "px, -" + this.state.tileCoords.y + "px)",
-                    transition: "all 2000ms"
+                    transition: "all 750ms"
 
                 }
                 let newTitleFont = {
@@ -518,10 +531,16 @@ class Content extends React.Component {
                             fall:false
                         })
                     }}
+                    onExit={() => {
+                        this.setState({
+                            fall:true
+                        })
+                    }}
                     onExited={() => {
                             this.setState({
                               wait: false,
-                              expandWait: false
+                              expandWait: false,
+                              fall: false
                             });
                           }}
                     >
@@ -726,7 +745,7 @@ class Content extends React.Component {
             <Col s={12} className='content'>
                 <CSSTransition
                         in={this.state.page === 1 && this.state.wait === false}
-                        timeout={2000}
+                        timeout={1000}
                         classNames={'proTiles'}
                         unmountOnExit
                         appear={true}
@@ -741,7 +760,7 @@ class Content extends React.Component {
                 
                 <CSSTransition
                     in={this.state.page === 3 && this.state.wait === false }
-                    timeout={2000}
+                    timeout={1000}
                     classNames={'proTiles'}
                     unmountOnExit
                         onExited={() => {
