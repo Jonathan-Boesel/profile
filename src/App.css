@@ -110,6 +110,12 @@ body {
   transform: translateY(-50%);
 }
 
+.sideBarLine {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  cursor: pointer;
+}
+
 .content {
   padding-left: 0px !important;
   padding-right: 0px !important;
@@ -272,6 +278,7 @@ body {
 
 
 .tileStyle {
+  background-color: white;
   border-style: solid;
   border-color: transparent;
   /*outline-style: solid;
@@ -282,6 +289,10 @@ body {
   float: left;
   transition: width 500ms, height 500ms, transform 500ms;
   margin: .5%;
+}
+
+.tilePointer {
+  cursor: pointer;
 }
 
 .hoverBorder {
@@ -360,34 +371,28 @@ body {
 /*Tile CSS for delayed animations*/
 
 .tile-appear {
-  opacity: 0.01;
   transform: translateY(-100vh);
 }
 
 .tile-appear-active {
-  opacity: 1;
   transform: translateY(0);
   transition: all 500ms ease-out;
 }
 
 .tile-enter {
-  opacity: 0.01;
   transform: translateY(-100vh);
 }
 
 .tile-enter-active {
-  opacity: 1;
   transform: translateY(0);
   transition: all 500ms ease-out;
 }
 
 .tile-exit {
-  opacity: 1;
   transform: translateY(0);
 }
 
 .tile-exit-active {
-  opacity: 0.01;
   transform: translateY(100vh);
   transition: all 500ms ease-in;
 }

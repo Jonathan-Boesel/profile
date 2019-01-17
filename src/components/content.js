@@ -45,7 +45,8 @@ class Content extends React.Component {
                 let tileClass = classNamesConst({
                     "tileStyle": true,
                     "z-depth-5": !this.props[isHovered],
-                    "hoverBorder": this.props[isHovered]
+                    "hoverBorder": this.props[isHovered],
+                    "tilePointer": !this.props.tileIsExpanded
                 });
                 let ID = "ID" + key;
                 let newDelay = delay + 's';
@@ -76,7 +77,8 @@ class Content extends React.Component {
                         left: this.props.tileCoords.x + "px",
                         height: "39vh",
                         width: "32.33%",
-                        margin: ".5%"
+                        margin: ".5%",
+                        cursor: "pointer"
                     };
                 }
                 let newStyles = {

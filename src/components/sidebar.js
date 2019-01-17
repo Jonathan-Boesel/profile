@@ -5,16 +5,19 @@ import { Row, Col } from 'react-materialize';
 class SideBarComp extends React.Component {
     render() {
 
-        return (
+        let point = {
+            color: "teal",
+        };
 
+        return (
             <Col s={12} className="sideBarContainer flow-text" style={{textAlign: "center"}}>
-                <Row>
+                <Row style={this.props.page === 1 ? point : null} className="sideBarLine" onClick={() => this.props.handleSidebarClick(1)}>
                     Home
                 </Row>
-                <Row>
+                <Row style={this.props.page === 2 ? point : null} className="sideBarLine" onClick={() => this.props.handleSidebarClick(2)}>
                     Projects
                 </Row>
-                <Row>
+                <Row style={this.props.page === 3 ? point : null}className="sideBarLine" onClick={() => this.props.handleSidebarClick(3)}>
                     About Me
                 </Row>
             </Col>

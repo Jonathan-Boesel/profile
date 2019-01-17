@@ -67,6 +67,16 @@ class App extends React.Component {
       duration: 2000
     };
   }
+
+  handleSidebarClick = (line) => {
+    if (this.state.wait === false) {
+      this.setState({
+        page: line,
+        wait: true
+      })
+    }
+  }
+
   //Handles clicking the burger menu Icon 
   handleMenuClick = () => {
     this.setState({
@@ -327,7 +337,10 @@ class App extends React.Component {
           <Row className='lowerBody'>
             <Col s={12} l={2} className="matSidebar hide-on-med-and-down">
               <div className='sideBar hide-on-med-and-down z-depth-5 side-adjust'>
-                <SideBarComp/>
+                <SideBarComp
+                  page={this.state.page}
+                  handleSidebarClick={(line) => this.handleSidebarClick(line)}
+                />
               </div>
             </Col>
             <Col s={12} l={10} >
