@@ -104,6 +104,12 @@ body {
   padding-right: 5px
 }
 
+.sideBarContainer {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .content {
   padding-left: 0px !important;
   padding-right: 0px !important;
