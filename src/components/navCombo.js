@@ -16,12 +16,12 @@ class NavCombo extends React.Component {
 
         return (
             <div>
-                <Row className='navBar'>
-                    <Col s={6}>
-                        <p className="flow-text" id="logo">Jonathan Boesel</p>
+                <Row className='upperBody'>
+                    <Col s={6} className='upperBody'>
+                        <p className="flow-text" style={{color: "#2FB595", whiteSpace: "nowrap"}} id="logo">Jonathan Boesel</p>
                     </Col>
                     <Col s={4}></Col>
-                    <Col s={2} className="right-align">
+                    <Col s={2} className="right-align menuFix">
                         <Link to={`/menu/` + menuState}>
                             <div className="menu" onClick={() => this.props.onMenuClick()}>
                                 <div className={this.props.isActive ?  "change1" : "bar1"}></div>

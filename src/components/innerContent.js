@@ -1,3 +1,4 @@
+/*global $*/
 import React from 'react';
 import { Row, Col, MediaBox } from 'react-materialize';
 import data from '../assets/contentObject';
@@ -9,36 +10,29 @@ class InnerContent extends React.Component {
         // console.log(data)
         return (
             <Row>
-                <Col s={3} className='contentText'>
+                <Col s={2} className='contentText'>
                     <Row>
-                        <Col s={12} className="left-align Title flow-text">
+                        <Col s={12} className="Title flow-text" style={{width: "50%", whiteSpace: "nowrap"}}>
                             {data[this.props.page].title}
                         </Col>
                     </Row>
                     <Row>
-                        <Col s={12} className="p1 flow-text">
+                        <Col s={12} className="p1 p flow-text" id='p1' style={{ whiteSpace: "nowrap"}}>
                             <p>{data[this.props.page].l1}</p>
                         </Col>
                     </Row>
                     <Row>
-                        <Col s={12} className="p2 flow-text">
+                        <Col s={12} className="p2 p flow-text" style={{ whiteSpace: "nowrap"}}>
                             <p>{data[this.props.page].l2}</p>
                         </Col>
                     </Row>
                     <Row>
-                        <Col s={12} className="p3 flow-text">
-                        <If condition={this.props.page > 1}>
-                            <Link to='/viewPage'>
-                                <p>{data[this.props.page].l3}</p>
-                            </Link>
-                            <Else />
+                        <Col s={12} className="p3 p flow-text" style={{ whiteSpace: "nowrap"}}>
                             <p>{data[this.props.page].l3}</p>
-                        </If>
-                            
                         </Col>
                     </Row>
                 </Col>
-                <Col s={8} className='contentImage' style= {{backgroundImage: 'url(' + data[this.props.page].image + ')'}}>
+                <Col s={9} className='contentImage z-depth-5' style= {{backgroundImage: 'url(' + data[this.props.page].image + ')'}}>
                     <a />
                 </Col>
                 <Col s={1} className='fill'>

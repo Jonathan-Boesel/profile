@@ -329,9 +329,10 @@ class App extends React.Component {
     return (
       <Router>
         <div className='totalContain'>
-          <Row className='upperBody'>
-            <Col s={12} className="z-depth-3"  >
-              <NavCombo isActive={this.state.menuIsActive} onMenuClick={() => this.handleMenuClick()}/>
+          <Row>
+            <Col s={12} className="z-depth-3 upperBody upperBodyGloss">
+                <NavCombo isActive={this.state.menuIsActive} onMenuClick={() => this.handleMenuClick()}/>
+              
             </Col>
           </Row>
           <Row className='lowerBody'>
@@ -380,7 +381,7 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col s={12} className='sideBar hide-on-med-and-up'>
+            <Col s={12} className='sideBarSmall hide-on-med-and-up'>
               This should hide on medium and up
             </Col>
           </Row>

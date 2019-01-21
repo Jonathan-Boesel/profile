@@ -68,14 +68,14 @@ class Content extends React.Component {
                 }
 
                 if (this.props.tileJustClosed === false) {
-                    styles = { transitionDelay: newDelay, height: "39vh" };
+                    styles = { transitionDelay: newDelay, height: "49%" };
                 }
                 else if (this.props.tileJustClosed === true) {
                     styles = {
                         position: "relative",
                         top: this.props.tileCoords.y + "px",
                         left: this.props.tileCoords.x + "px",
-                        height: "39vh",
+                        height: "49%",
                         width: "32.33%",
                         margin: ".5%",
                         cursor: "pointer"
@@ -157,7 +157,7 @@ class Content extends React.Component {
                 </CSSTransition>
                 
                 <Row >
-                    <Col s={11} l={12}className="tileDiv">
+                    <Col s={12} l={11}className="tileDiv">
                         {tileDiv}
                     </Col>
                     <Col s={0} l={1} className="fill hide-on-med-and-down"></Col>
