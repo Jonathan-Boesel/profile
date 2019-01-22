@@ -7,6 +7,7 @@ import InnerContent from './innerContent.js';
 import { CSSTransition } from 'react-transition-group';
 import '../App.css';
 import tileData from '../assets/tileObject.js';
+import CarouselComp from "./carousel.js"
 
 
 class Content extends React.Component {
@@ -157,8 +158,19 @@ class Content extends React.Component {
                 </CSSTransition>
                 
                 <Row >
-                    <Col s={12} l={11}className="tileDiv">
+                    <Col s={12} l={11} className="tileDiv hide-on-med-and-down">
                         {tileDiv}
+                    </Col>
+                    <Col s={12} l={11} className="carouselDiv show-on-medium-and-down hide-on-large-only">
+                        <CSSTransition
+                            in={this.props.page === 2 && this.props.wait === false }
+                            timeout={1000}
+                            classNames={'proTiles'}
+                            unmountOnExit
+                                onExited={this.props.onExited2}
+                        >
+                            <CarouselComp/>
+                        </CSSTransition>
                     </Col>
                     <Col s={0} l={1} className="fill hide-on-med-and-down"></Col>
                 </Row>

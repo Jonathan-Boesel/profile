@@ -5,23 +5,12 @@ import { CSSTransition } from 'react-transition-group';
 
 class SideBarComp extends React.Component {
     render() {
-        let description;
-        if (this.props.page === 1) {
-            description = "---Home---"
-        }
+        if (this.props.page === 1) {}
         let point = {
             color: "#2FB595",
             fontWeight: "bold",
             transition: "color 1000ms",
         };
-
-        let show = {
-            display: "inline"
-        }
-
-        let hide = {
-            display: "none"
-        }
 
         return (
 

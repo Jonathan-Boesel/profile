@@ -31,15 +31,16 @@ class NavCombo extends React.Component {
                         
                     </Col>
                 </Row>
+                <Row >
                     <CSSTransition
                         in={this.props.isActive}
-                        timeout={2000}
+                        timeout={500}
                         classNames={'modalMenu'}
                         unmountOnExit
                     >
-                        <MenuModal show={this.props.isActive}></MenuModal>
+                        <MenuModal show={this.props.isActive} handleMenuModalClick={(line) => this.props.handleMenuModalClick(line)}></MenuModal>
                     </CSSTransition>
-                    
+                </Row>
             </div>
         );
     }

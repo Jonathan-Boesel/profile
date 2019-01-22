@@ -11,6 +11,8 @@ import TestContent from './components/testContent.js';
 import MenuModal from './components/menuModal.js';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import SideBarComp from './components/sidebar.js'
+import SideBarCompSmall from './components/sidebarSmall.js'
+import CarouselComp from './components/carousel.js'
 import _ from 'lodash';
 
 let pageMax = 3;
@@ -86,6 +88,16 @@ class App extends React.Component {
     });
     if (!this.state.menuIsActive) {
       disableBodyScroll;
+    }
+  }
+
+  handleMenuModalClick = (line) => {
+    if (this.state.wait === false) {
+      this.setState({
+        menuIsActive: false,
+        page: line,
+        wait: true,
+      })
     }
   }
 
@@ -331,8 +343,11 @@ class App extends React.Component {
         <div className='totalContain'>
           <Row>
             <Col s={12} className="z-depth-3 upperBody upperBodyGloss">
-                <NavCombo isActive={this.state.menuIsActive} onMenuClick={() => this.handleMenuClick()}/>
-              
+                <NavCombo 
+                  isActive={this.state.menuIsActive} 
+                  onMenuClick={() => this.handleMenuClick()} 
+                  handleMenuModalClick={(line) => this.handleMenuModalClick(line)}
+                />
             </Col>
           </Row>
           <Row className='lowerBody'>
@@ -381,8 +396,11 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col s={12} className='sideBarSmall hide-on-med-and-up'>
-              This should hide on medium and up
+            <Col s={12} className='sideBarSmall show-on-medium-and-down hide-on-large-only'>
+              <SideBarCompSmall
+                page={this.state.page}
+                handleSidebarClick={(line) => this.handleSidebarClick(line)}
+              />
             </Col>
           </Row>
           
