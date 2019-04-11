@@ -25,7 +25,7 @@ class App extends React.Component {
       menuIsActive: false,
 
       //Content States - All
-      page: 1,
+      page: 2,
       //no tile is showing in initial state (page = 1 not 2)
       tileIsActive: false,
       //modal is not open in initial state
@@ -341,7 +341,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className='totalContain'>
-          <Row>
+          <Row className='rowAdjust'>
             <Col s={12} className="z-depth-3 upperBody upperBodyGloss">
                 <NavCombo 
                   isActive={this.state.menuIsActive} 
@@ -350,17 +350,16 @@ class App extends React.Component {
                 />
             </Col>
           </Row>
-          <Row className='lowerBody'>
-            <Col s={12} l={2} className="matSidebar hide-on-med-and-down">
+          <Row className='lowerBody rowAdjust' id='content'>
+            {/*<Col s={12} l={2} className="matSidebar hide-on-med-and-down">
               <div className='sideBar hide-on-med-and-down z-depth-5 side-adjust'>
                 <SideBarComp
                   page={this.state.page}
                   handleSidebarClick={(line) => this.handleSidebarClick(line)}
                 />
               </div>
-            </Col>
-            <Col s={12} l={10} >
-              <div id="content" className='content'>
+            </Col>*/}
+            {/*<Col s={12} l={12} id="content" className='colAdjust'>*/}
                 <Content
                   page={this.state.page}
                   tileIsActive={this.state.tileIsActive}
@@ -392,11 +391,11 @@ class App extends React.Component {
                   onExited1={() => this.onExited1()}
                   onExited2={() => this.onExited2()}
                 />
-              </div>
-            </Col>
+            {/*</Col>*/}
           </Row>
-          <Row>
-            <Col s={12} className='sideBarSmall show-on-medium-and-down hide-on-large-only'>
+          <Row className='rowAdjust'>
+            {/*<Col s={12} className='sideBarSmall show-on-medium-and-down hide-on-large-only'>*/}
+            <Col s={12} className='sideBarSmall'>
               <SideBarCompSmall
                 page={this.state.page}
                 handleSidebarClick={(line) => this.handleSidebarClick(line)}

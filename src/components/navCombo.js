@@ -18,7 +18,7 @@ class NavCombo extends React.Component {
             <div>
                 <Row className='upperBody'>
                     <Col s={6} className='upperBody'>
-                        <p className="flow-text" style={{color: "#2FB595", whiteSpace: "nowrap"}} id="logo">Jonathan Boesel</p>
+                        <p className="flow-text" style={{color: "#2fb595", whiteSpace: "nowrap"}} id="logo">Jonathan Boesel</p>
                     </Col>
                     <Col s={4}></Col>
                     <Col s={2} className="right-align menuFix">

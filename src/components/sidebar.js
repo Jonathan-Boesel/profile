@@ -7,7 +7,7 @@ class SideBarComp extends React.Component {
     render() {
         if (this.props.page === 1) {}
         let point = {
-            color: "#2FB595",
+            color: "#2fb595",
             fontWeight: "bold",
             transition: "color 1000ms",
         };
