@@ -86,7 +86,7 @@ class Content extends React.Component {
                     website =
                         <Iframe 
                             url= {url}
-                            styles={{display: toggle, padding: '2vw', width: '75%', zIndex: "1"}}
+                            styles={{display: toggle, padding: '2vw', width: '75%', height: "90%", zIndex: "1"}}
                             allow="geolocation"
                         />;
                 }
