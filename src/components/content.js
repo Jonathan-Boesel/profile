@@ -1,8 +1,6 @@
 /*global $*/
 import React from 'react';
-import { Link } from "react-router-dom";
 import { Row, Col } from 'react-materialize';
-import _ from 'lodash';
 import InnerContent from './innerContent.js';
 import { CSSTransition } from 'react-transition-group';
 import '../App.css';
@@ -56,14 +54,14 @@ class Content extends React.Component {
                 let tileShadow = classNamesConst({
 
                     "hoverShadow": this.props[isHovered]
-                })
+                });
                 let tileBackgroundImage;
                 if (this.props[isHovered]) {
-                    tileBackgroundImage = 'url(' + image + ')'
+                    tileBackgroundImage = 'url(' + image + ')';
                 }
 
                 if (!this.props[isHovered]) {
-                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + image + ')'
+                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + image + ')';
                 }
 
                 let ID = "ID" + key;
@@ -75,7 +73,7 @@ class Content extends React.Component {
                 let website;
 
                 //variable height of tile based on # of projects 
-                let height = (100 / Math.ceil(tileData.length / 3)) - 2
+                let height = (100 / Math.ceil(tileData.length / 3)) - 2;
 
                 //Show new tile content when a tile expands, wait for it to
                 //start expanding so other tiles are not shown to change
@@ -86,7 +84,9 @@ class Content extends React.Component {
                     website =
                         <Iframe 
                             url= {url}
-                            styles={{display: toggle, padding: '2vw', width: '75%', height: "90%", zIndex: "1"}}
+                            width= "100%"
+                            height= "100%"
+                            styles={{display: toggle, zIndex: "1"}}
                             allow="geolocation"
                         />;
                 }
@@ -191,7 +191,7 @@ class Content extends React.Component {
                                         <a target="_blank" rel="noopener noreferrer" href={url}>Visit site in new tab</a>
                                     </Col>
                                 </Col>
-                                <Col s={9} className='lds-dual-ring'>
+                                <Col s={9} className='lds-dual-ring websiteParent'>
                                     {website}
                                 </Col>
                                 

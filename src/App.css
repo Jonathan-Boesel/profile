@@ -781,6 +781,10 @@ a {
   height: 100%;
 }
 
+.websiteParent {
+  height: 98%!important;
+  padding-top: 1.5vh!important;
+}
 
 .contentLink {
   align-self: flex-end;

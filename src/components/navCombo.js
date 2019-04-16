@@ -3,15 +3,11 @@ import React from 'react';
 import MenuModal from './menuModal.js';
 import { Row, Col } from 'react-materialize';
 import { Link } from "react-router-dom";
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { CSSTransition } from 'react-transition-group';
 
 class NavCombo extends React.Component {
 
     render() {
-        console.log("XXXX" + (this.props.isActive))
-
-
         const menuState = !this.props.isActive;
 
         return (

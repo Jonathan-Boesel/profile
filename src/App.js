@@ -1,21 +1,15 @@
 /*global $*/
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 import './App.css';
 // import NavBar from './components/navbar.js';
 import NavCombo from './components/navCombo.js';
-import Menu from './components/menu.js';
 import { Row, Col } from 'react-materialize';
 import Content from './components/content.js';
-import TestContent from './components/testContent.js';
-import MenuModal from './components/menuModal.js';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import SideBarComp from './components/sidebar.js'
-import SideBarCompSmall from './components/sidebarSmall.js'
-import CarouselComp from './components/carousel.js'
-import _ from 'lodash';
+import { disableBodyScroll } from 'body-scroll-lock';
+import SideBarCompSmall from './components/sidebarSmall.js';
 
-let pageMax = 2;
+// let pageMax = 2;
 class App extends React.Component {
 
   constructor(props) {
@@ -75,7 +69,7 @@ class App extends React.Component {
       this.setState({
         page: line,
         wait: true
-      })
+      });
     }
   }
 
@@ -87,7 +81,7 @@ class App extends React.Component {
       console.log(this.state.menuIsActive);
     });
     if (!this.state.menuIsActive) {
-      disableBodyScroll;
+      disableBodyScroll();
     }
   }
 
@@ -97,7 +91,7 @@ class App extends React.Component {
         menuIsActive: false,
         page: line,
         wait: true,
-      })
+      });
     }
   }
 
@@ -253,50 +247,50 @@ class App extends React.Component {
       contentCoords: contentCoords
     });
     // var handleScrollDown = () => {
-        //   if (this.state.page < pageMax && this.state.tileJustClosed !== true) {
-        //     this.setState({
-        //       page: this.state.page + 1,
-        //       wait: true,
-        //       tileIsExpanded: false,
-        //       tileModalIsActive: false,
-        //       tileJustClosed: false
-        //     }, function() {
-        //       console.log(this.state.page);
-        //     });
-        //   }
-        //   else {
-        //     return;
-        //   }
-        // };
-        // var handleScrollUp = () => {
-        //   console.log("scroll");
-        //   if (this.state.page > 1 && this.state.tileJustClosed !== true) {
-        //     this.setState({
-        //       page: this.state.page - 1,
-        //       wait: true,
-        //       tileJustClosed: false,
-        //       tileIsExpanded: false
-        //     }, function() {
-        //       console.log(this.state.page);
-        //     });
-        //   }
-        //   else {
-        //     return;
-        //   }
-        // };
-        // //Throttles scroll events to wait for transition animations
-        // var throttleBack = _.throttle(function(event) {
-        //   if (event.originalEvent.wheelDelta >= 0) {
-        //     console.log('Scroll up');
-        //     handleScrollUp();
-        //   }
-        //   else {
-        //     console.log('Scroll down');
-        //     handleScrollDown();
-        //   }
-        // }, 2000, { 'trailing': false });
-    
-        // $(window).bind('mousewheel', throttleBack);
+    //   if (this.state.page < pageMax && this.state.tileJustClosed !== true) {
+    //     this.setState({
+    //       page: this.state.page + 1,
+    //       wait: true,
+    //       tileIsExpanded: false,
+    //       tileModalIsActive: false,
+    //       tileJustClosed: false
+    //     }, function() {
+    //       console.log(this.state.page);
+    //     });
+    //   }
+    //   else {
+    //     return;
+    //   }
+    // };
+    // var handleScrollUp = () => {
+    //   console.log("scroll");
+    //   if (this.state.page > 1 && this.state.tileJustClosed !== true) {
+    //     this.setState({
+    //       page: this.state.page - 1,
+    //       wait: true,
+    //       tileJustClosed: false,
+    //       tileIsExpanded: false
+    //     }, function() {
+    //       console.log(this.state.page);
+    //     });
+    //   }
+    //   else {
+    //     return;
+    //   }
+    // };
+    // //Throttles scroll events to wait for transition animations
+    // var throttleBack = _.throttle(function(event) {
+    //   if (event.originalEvent.wheelDelta >= 0) {
+    //     console.log('Scroll up');
+    //     handleScrollUp();
+    //   }
+    //   else {
+    //     console.log('Scroll down');
+    //     handleScrollDown();
+    //   }
+    // }, 2000, { 'trailing': false });
+
+    // $(window).bind('mousewheel', throttleBack);
 
   }
   componentWillUpdate() {

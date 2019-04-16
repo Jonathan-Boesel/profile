@@ -1,7 +1,6 @@
 import React from 'react';
 import '../App.css';
 import { Row, Col } from 'react-materialize';
-import { CSSTransition } from 'react-transition-group';
 
 class SideBarCompSmall extends React.Component {
     render() {
@@ -11,9 +10,7 @@ class SideBarCompSmall extends React.Component {
             fontWeight: "bold",
             transition: "color 1000ms",
         };
-
         return (
-
             <Row className="sideBarContainer flow-text">
                 <Col s={12}  className="sideBarTags">
                     <Col l={4} style={this.props.page === 1 ? point : null} className="sideBarLine hide-on-med-and-down" onClick={() => this.props.handleSidebarClick(1)}>
@@ -33,10 +30,7 @@ class SideBarCompSmall extends React.Component {
                         </a>
                     </Col>
                 </Col>
-                
             </Row>
-
-
         );
     }
 }
