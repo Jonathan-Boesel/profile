@@ -2,7 +2,7 @@ export default [{
         'key': '1',
         'title': 'Jam Clash',
         'description': 'AWS based social site for musicians',
-        'description2': 'Full stack social media app for musicians build with a team. When a user creates an account their location is saved along with their desired musician related information. The user can then search for other musiccians with a variety of paramaters that make AJAX calls to an AWS database of users to find people to jam with.',
+        'description2': 'Full stack social media app for musicians built with a team. When a user creates an account their location is saved along with their desired musician related information. The user can then search for other musiccians with a variety of paramaters that make AJAX calls to an AWS database of users to find people to jam with.',
         'builtWith': 'Built using: HTML, CSS, JQuery, materialize, node.js, APIs, express, sequelize, mongoDB, firebase, passport, nodemailer, and AWS.',
         'howTo': 'How to use: Log in using the user name test@email.com and the password test. When searching set the slider bar to "100" to search at any distance to get the most results wherever you are.',
         "image": require('./images/jamclash.png'),

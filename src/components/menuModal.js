@@ -11,9 +11,10 @@ class MenuModal extends React.Component {
 
             <div className="modalBack">
                     <div className="modalContent">
-                        <p className='flow-text menuP' onClick={() => this.props.handleMenuModalClick(1)}>HOME</p>
-                        <p className='flow-text menuP' onClick={() => this.props.handleMenuModalClick(2)}>PROJECTS</p>
-                        <p className='flow-text menuP' onClick={() => this.props.handleMenuModalClick(3)}>ABOUT ME</p>
+                        <p className='flow-text menuP' onClick={() => this.props.handleMenuModalClick(1)}>PROJECTS</p>
+                        <p className='flow-text menuP' onClick={() => this.props.handleMenuModalClick(2)}>ABOUT ME</p>
+                        <a target="_blank" rel="noopener noreferrer" href={'https://github.com/Jonathan-Boesel'}><p className='flow-text menuP' >GitHub</p></a>
+                        <a target="_blank" rel="noopener noreferrer" href={'https://www.linkedin.com/in/jonathan-boesel/'}><p className='flow-text menuP' >LinkedIn</p></a>
                     </div>    
                 </div>
 

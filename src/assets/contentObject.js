@@ -3,7 +3,8 @@ export default [{
         "l1": "Curious",
         "l2": "Quick Learning",
         "l3": "Problem Solver",
-        "image": require('./images/abstract.jpg')
+        "l4": "Jonathan Boesel is a Web Developer with an undergraduate background in Biology from Virginia Tech. He has found that many aspects of science have served him well from problem solving to debugging. Always curious, he is constantly on the lookout for new technologies and interesting ways to accomplish goals. Currently, he is exploring coding in a 3D space using C# and unity. Excited to learn anything new, he looks forward to challenges that come his way, and enjoys finding solutions to help his team.",
+        "image": require('./images/profile.png')
     },
     {
         "title": "Poject 1",

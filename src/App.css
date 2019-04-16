@@ -231,6 +231,19 @@ body {
   height: 75vh !important;
 }
 
+#carouselText {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+}
+
+#carouselText::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
 .rowAdjust {
   margin-bottom: 0 !important
 }
@@ -267,6 +280,18 @@ body {
   padding-top: 2vh;
   padding-bottom: 2vh;
   cursor: pointer;
+  text-align: center;
+  color: #F0EBE0;
+  white-space: nowrap
+}
+
+.indicators {
+  color: blue!important;
+}
+
+.sideBarLine3 {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
   text-align: center;
   color: #F0EBE0;
   white-space: nowrap
@@ -323,12 +348,13 @@ body {
 }
 
 .contentImage {
-  transform: scale(-1);
   /*z-index: -1;*/
   position: relative;
-  top: 1vh;
-  height: 79vh;
-  background-size: cover;
+  top: 1em;
+  /*height: 79vh;*/
+  height: auto;
+  max-width: 100%;
+  /*background-size: cover;*/
   /*background-image: url(assets/abstract.jpg);*/
   background-repeat: no-repeat;
   background-position: center;
@@ -338,6 +364,34 @@ body {
   display: block;
   /*position: relative;*/
 }
+
+#aboutMeText {
+  font-size: 18px;
+  height: 75vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+}
+
+#aboutMeText::-webkit-scrollbar {
+  /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+@media only screen and (max-width: 992px) {
+  #aboutMeText {
+    height: 40vh;
+  }
+  #aboutMeText::-webkit-scrollbar {
+    /* WebKit */
+    width: 0;
+    height: 0;
+  }
+}
+
 
 .tileImageContainer {
   width: 33.333%;
@@ -382,7 +436,7 @@ body {
 .contentText {
   padding-left: 0px !important;
   padding-right: 15px !important;
-  padding-top: 3% !important;
+  /*padding-top: 3% !important;
   position: relative;
   z-index: 2;
   /*color: #393E41;*/

@@ -15,7 +15,7 @@ import SideBarCompSmall from './components/sidebarSmall.js'
 import CarouselComp from './components/carousel.js'
 import _ from 'lodash';
 
-let pageMax = 3;
+let pageMax = 2;
 class App extends React.Component {
 
   constructor(props) {
@@ -25,7 +25,7 @@ class App extends React.Component {
       menuIsActive: false,
 
       //Content States - All
-      page: 2,
+      page: 1,
       //no tile is showing in initial state (page = 1 not 2)
       tileIsActive: false,
       //modal is not open in initial state
@@ -252,57 +252,57 @@ class App extends React.Component {
     this.setState({
       contentCoords: contentCoords
     });
-    var handleScrollDown = () => {
-      if (this.state.page < pageMax && this.state.tileJustClosed !== true) {
-        this.setState({
-          page: this.state.page + 1,
-          wait: true,
-          tileIsExpanded: false,
-          tileModalIsActive: false,
-          tileJustClosed: false
-        }, function() {
-          console.log(this.state.page);
-        });
-      }
-      else {
-        return;
-      }
-    };
-    var handleScrollUp = () => {
-      console.log("scroll");
-      if (this.state.page > 1 && this.state.tileJustClosed !== true) {
-        this.setState({
-          page: this.state.page - 1,
-          wait: true,
-          tileJustClosed: false,
-          tileIsExpanded: false
-        }, function() {
-          console.log(this.state.page);
-        });
-      }
-      else {
-        return;
-      }
-    };
-    //Throttles scroll events to wait for transition animations
-    var throttleBack = _.throttle(function(event) {
-      if (event.originalEvent.wheelDelta >= 0) {
-        console.log('Scroll up');
-        handleScrollUp();
-      }
-      else {
-        console.log('Scroll down');
-        handleScrollDown();
-      }
-    }, 2000, { 'trailing': false });
-
-    $(window).bind('mousewheel', throttleBack);
+    // var handleScrollDown = () => {
+        //   if (this.state.page < pageMax && this.state.tileJustClosed !== true) {
+        //     this.setState({
+        //       page: this.state.page + 1,
+        //       wait: true,
+        //       tileIsExpanded: false,
+        //       tileModalIsActive: false,
+        //       tileJustClosed: false
+        //     }, function() {
+        //       console.log(this.state.page);
+        //     });
+        //   }
+        //   else {
+        //     return;
+        //   }
+        // };
+        // var handleScrollUp = () => {
+        //   console.log("scroll");
+        //   if (this.state.page > 1 && this.state.tileJustClosed !== true) {
+        //     this.setState({
+        //       page: this.state.page - 1,
+        //       wait: true,
+        //       tileJustClosed: false,
+        //       tileIsExpanded: false
+        //     }, function() {
+        //       console.log(this.state.page);
+        //     });
+        //   }
+        //   else {
+        //     return;
+        //   }
+        // };
+        // //Throttles scroll events to wait for transition animations
+        // var throttleBack = _.throttle(function(event) {
+        //   if (event.originalEvent.wheelDelta >= 0) {
+        //     console.log('Scroll up');
+        //     handleScrollUp();
+        //   }
+        //   else {
+        //     console.log('Scroll down');
+        //     handleScrollDown();
+        //   }
+        // }, 2000, { 'trailing': false });
+    
+        // $(window).bind('mousewheel', throttleBack);
 
   }
   componentWillUpdate() {
     //Handles when to show the tile page based on page state. Extra conditions
     //to keep tiles from resetting when one is expanded
-    if (this.state.page === 2 && this.state.tileIsActive !== true && this.state.tileClicked !== true) {
+    if (this.state.page === 1 && this.state.tileIsActive !== true && this.state.tileClicked !== true) {
       let tiles = [
         { tileActive1: true },
         { tileActive2: true },
@@ -317,7 +317,7 @@ class App extends React.Component {
       });
     }
     //Handles a page change when a tile is currently expanded
-    else if (this.state.page !== 2 && this.state.tileIsActive === true) {
+    else if (this.state.page !== 1 && this.state.tileIsActive === true) {
       let tiles = [
         { tileActive1: false },
         { tileActive2: false },

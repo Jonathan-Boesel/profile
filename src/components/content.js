@@ -126,7 +126,7 @@ class Content extends React.Component {
                 let tileKey = "tileActive" + key;
                 return <CSSTransition
                     key={key}
-                    in={this.props.page === 2 && this.props.wait === false && this.props.tileModalIsActive === false && this.props.tiles[key-1][tileKey] === true}
+                    in={this.props.page === 1 && this.props.wait === false && this.props.tileModalIsActive === false && this.props.tiles[key-1][tileKey] === true}
                     timeout={1500}
                     classNames={'tile'}
                     unmountOnExit
@@ -203,7 +203,7 @@ class Content extends React.Component {
         return (
             <div className="content">
                 <CSSTransition
-                        in={this.props.page === 1 && this.props.wait === false}
+                        in={this.props.page === 2 && this.props.wait === false}
                         timeout={1000}
                         classNames={'proTiles'}
                         unmountOnExit
@@ -213,22 +213,12 @@ class Content extends React.Component {
                         <InnerContent page={0}></InnerContent>
                 </CSSTransition>
                 
-                <CSSTransition
-                    in={this.props.page === 3 && this.props.wait === false }
-                    timeout={1000}
-                    classNames={'proTiles'}
-                    unmountOnExit
-                        onExited={this.props.onExited2}
-                >
-                    <InnerContent page={1}></InnerContent>
-                </CSSTransition>
-                
                     <Col s={12} l={12} className="tileDiv hide-on-med-and-down colAdjust">
                         {tileDiv}
                     </Col>
                     <Col s={12} l={12} className="carouselDiv show-on-medium-and-down hide-on-large-only">
-                        <CSSTransition
-                            in={this.props.page === 2 && this.props.wait === false }
+                    <CSSTransition
+                            in={this.props.page === 1 && this.props.wait === false }
                             timeout={1000}
                             classNames={'proTiles'}
                             unmountOnExit

@@ -5,31 +5,39 @@ import tileData from '../assets/tileObject.js';
 
 class CarouselComp extends React.Component {
     render() {
-        // let tileDiv =
-        //     tileData.map(({ key, title, description, description2, image, link }) => {
-        //         return <div key={key}>
-        //                     <Row>
-        //                         <Col s={4} className='tileImageContainer'>
-        //                             <Row className='tileImage z-depth-5' style= {{backgroundImage: 'url(' + image + ')', float: "left"}}>
-        //                                 <a />
-        //                             </Row >
-        //                             <Row>
-        //                                 {link}
-        //                             </Row>
-        //                         </Col>
-        //                         <Col s={8}>
-        //                             <Row className='flow-text' style={{textAlign: 'center', paddingTop: '5vh'}}>
-        //                                 {title}
-        //                             </Row>
-        //                             <Row style={{float: "left"}}>
-        //                                 <div>{description2}</div>
-        //                             </Row>
-        //                         </Col>
-        //                     </Row>
-        //                 </div>;
-        //     });
+        let tileDiv =
+            tileData.map(({ key, title, description, description2, image, link, builtWith, howTo, url }) => {
+                return <div key={key}>
+                            <div className="z-depth-5" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + image + ')', height: "100%", backgroundSize: "cover"}}>
+                                <Row className='flow-text textStyle' style={{ paddingTop: '5vh', paddingLeft: "5px"}}>
+                                    {title}
+                                </Row>
+                                 <Col s={12} style={{height: "70%", overflowY: "scroll"}} id="carouselText" className=' textStyle'>
+                                    <Row className='textStyle'>{description2}</Row>
+                                    <Row>{builtWith}</Row>
+                                    <Row>{howTo}</Row>
+                                </Col>
+                                <Col s={12} style={{ height: "10%", textAlign: "center"}} className='textStyle'>
+                                    <a target="_blank" rel="noopener noreferrer" href={url}>Visit site in new tab</a>
+                                </Col>    
+                                {/*<Row className='tileDescription textStyle' style={{textAlign: 'center'}}>
+                                    {description2}
+                                </Row>*/}
+                            </div>
+                        </div>;
+            });
         return (
-            <Carousel options={{ fullWidth: true}}>
+            <Carousel options={{ fullWidth: true, indicators: true}}>
+                {tileDiv}
+                {/*<div className="z-depth-5" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + tileData[0].image + ')', height: "100%", backgroundSize: "cover"}}>
+                                <Row className='flow-text textStyle' style={{ paddingTop: '5vh', paddingLeft: "5px"}}>
+                                    {tileData[0].title}
+                                </Row>
+                                    
+                                <Row className='tileDescription textStyle' style={{textAlign: 'center'}}>
+                                    {tileData[0].tileContent}
+                                </Row>
+                            </div>
                 <div className="z-depth-5">
                     <Row>
                         <Col s={8} className='tileImageContainer'>
@@ -149,7 +157,7 @@ class CarouselComp extends React.Component {
                     <Row style={{paddingTop: "2vh"}}>
                         {tileData[5].description2}
                     </Row>
-                </div>
+                </div>*/}
                 
             </Carousel>
         );
