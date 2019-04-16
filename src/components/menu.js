@@ -1,13 +1,19 @@
 /*global $*/
 import React from 'react';
 import { Link } from "react-router-dom";
+import MenuModal from './menuModal.js'
 
 
 
 class Menu extends React.Component {
-    state = {
-        isActive: false
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isActive: false
+        }
     }
+
 
     handleClick = () => {
         this.setState({
@@ -20,12 +26,16 @@ class Menu extends React.Component {
     render() {
         const { menuState } = this.state.isActive;
         return (
-            <Link to={`/menu/${this.state.isActive}`}>
-                <div className="menu" onClick={this.handleClick}>
-                    <div className={this.state.isActive ? "change1" : "bar1"}></div>
-                    <div className={this.state.isActive ? "change2" : "bar2"}></div>
-                </div>
-            </Link>
+            <div>
+                
+                <Link to={`/menu/${this.state.isActive}`}>
+                    <div className="menu" onClick={this.handleClick}>
+                        <div className={this.state.isActive ? "change1" : "bar1"}></div>
+                        <div className={this.state.isActive ? "change2" : "bar2"}></div>
+                    </div>
+                </Link>
+                <MenuModal show={this.state.isActive}></MenuModal>
+            </div>
         )
     }
 }
