@@ -35,7 +35,7 @@ export default [{
         'key': '4',
         'title': '"Super Smash Bros." Trivia Game',
         'description': 'Small trivia game exploring click events and timeouts',
-        'description2': 'This trivia game has a “Super Smash Bros. 64” from the Nintendo 64 era and presents the user with a series of timed questions that display GIF upon answering. The number of correct and incorrect answers are saved to a variable and displayed at the end.',
+        'description2': 'This trivia game has a “Super Smash Bros. 64” theme from the Nintendo 64 era and presents the user with a series of timed questions that display GIF upon answering. The number of correct and incorrect answers are saved to a variable and displayed at the end.',
         'builtWith': 'Built using: HTML, CSS, and Javascript.',
         'howTo': 'How to use: Hover over and click the “Press Start” area on the screen and begin to answer the questions. See how many you can get right!',
         "image": require('./images/mario.png'),
