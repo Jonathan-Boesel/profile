@@ -52,7 +52,7 @@ class App extends React.Component {
         { tileActive3: false },
         { tileActive4: false },
         { tileActive5: false },
-        { tileActive6: false },
+        { tileActive6: false }
       ],
       tileCoords: {
         x: null,
@@ -109,7 +109,8 @@ class App extends React.Component {
   //to ignore hovers
   handleHoverIn = (key) => {
     let state = "isHovered" + key;
-    if (this.state.fall === false && !this.state.tileIsExpanded && !this.state.tileIsExpanding) {
+    if (this.state.fall === false && !this.state.tileIsExpanded && !this.state.tileIsExpanding && !this.state[state]) {
+      console.log("HOVERERERE")
       this.setState({
         [state]: true
       });

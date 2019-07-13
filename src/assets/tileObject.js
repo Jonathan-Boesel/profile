@@ -1,11 +1,12 @@
-export default [{
+export default 
+[{
         'key': '1',
         'title': 'Jam Clash',
         'description': 'AWS based social site for musicians',
         'description2': 'Full stack social media app for musicians built with a team. When a user creates an account their location is saved along with their desired musician related information. The user can then search for other musicians with a variety of paramaters that make AJAX calls to an AWS database of users to find people to jam with.',
         'builtWith': 'Built using: HTML, CSS, JQuery, materialize, node.js, APIs, express, sequelize, mongoDB, firebase, passport, nodemailer, and AWS.',
         'howTo': 'How to use: Log in using the user name test@email.com and the password test. When searching set the slider bar to "100" to search at any distance to get the most results wherever you are.',
-        "image": require('./images/jamclash.png'),
+        "image": require('./images/jamclash2.jpg'),
         "link": "some Link",
         "url": "https://jamclash.herokuapp.com/"
     },
@@ -27,13 +28,13 @@ export default [{
         'description2': "A full stack food app built with a team prioritizing dishes the user is craving over a specific restaurant. The goal of the app is to eliminate bias in food searches by only displaying restaurant information after a picture is clicked. Once a meal has been selected the restaurant name can be clicked to find the dish nearest you.",
         'builtWith': 'Build using: HTML, CSS, Handlebars.js, Google APIs, express, sequelize, bulma, multer, Amazon S3, and MySql.',
         'howTo': 'How to use:  Try searching for pasta or chicken, the database is seeded with a variety of dishes. Sign in with user: stephen and password: password to test out the dashboard.',
-        "image": require('./images/mealCrave2.png'),
+        "image": require('./images/mealcravenew.png'),
         "link": "some Link",
         "url": "https://meal-crave.herokuapp.com/"
     },
     {
         'key': '4',
-        'title': '"Super Smash Bros." Trivia Game',
+        'title': 'Trivia Game',
         'description': 'Small trivia game exploring click events and timeouts',
         'description2': 'This trivia game has a “Super Smash Bros. 64” theme from the Nintendo 64 era and presents the user with a series of timed questions that display GIFs upon answering. The number of correct and incorrect answers are saved to a variable and displayed at the end.',
         'builtWith': 'Built using: HTML, CSS, and Javascript.',
@@ -44,7 +45,7 @@ export default [{
     },
     {
         'key': '5',
-        'title': '"Gladiator" RPG Game',
+        'title': 'Click RPG Game',
         'description': 'Interactive click game testing object oriented programming',
         'description2': 'A small RPG game employing Object Oriented Programming to construct the various available characters. Each character has a set amount of health and attack points. The user’s selected character increases in strength with each attack.',
         'builtWith': 'Built using: HTML, CSS, and Javascript.',
@@ -55,7 +56,7 @@ export default [{
     },
     {
         'key': '6',
-        'title': '"Internet" Themed Hangman Game',
+        'title': 'Hangman Game',
         'description': 'Compare your input to an array of correct keywords',
         'description2': 'In this Internet themed hangman game various keywords are saved to an array along with the corresponding blank spaces to display to the user. User keystrokes are checked against the current keyword and any blanks are replaced with the correct letter. After a word is guessed correctly or the available guesses reach zero, a new word is randomly selected.',
         'builtWith': 'Built using: HTML, CSS, and Javascript.',

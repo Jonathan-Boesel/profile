@@ -56,12 +56,15 @@ class Content extends React.Component {
                     "hoverShadow": this.props[isHovered]
                 });
                 let tileBackgroundImage;
+                let hoverText;
                 if (this.props[isHovered]) {
-                    tileBackgroundImage = 'url(' + image + ')';
+                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url(' + image + ')';
+                    hoverText = "block";
                 }
 
                 if (!this.props[isHovered]) {
-                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + image + ')';
+                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url(' + image + ')';
+                    hoverText = "none";
                 }
 
                 let ID = "ID" + key;
@@ -135,7 +138,7 @@ class Content extends React.Component {
                     onExit={this.props.onExit}
                     onExited={this.props.onExited1}
                     >
-                        <div id={ID} style={this.props.tileClicked && this.props.expandWait === false ? newStyles : styles} className = {tileClass} onMouseEnter={() => this.props.handleHoverIn(key)} onMouseLeave={() => this.props.handleHoverOut(key)} onClick={() => this.handleInnerClick(key, ID)}>
+                        <div id={ID} style={this.props.tileClicked && this.props.expandWait === false ? newStyles : styles} className = {tileClass} onMouseEnter={() => this.props.handleHoverIn(key)} onMouseMove={() => this.props.handleHoverIn(key)} onMouseLeave={() => this.props.handleHoverOut(key)} onClick={() => this.handleInnerClick(key, ID)}>
                             {/*<div>
                                 <Row>
                                     <Col s={4} className='tileImageContainer'>
@@ -160,12 +163,12 @@ class Content extends React.Component {
                                     {tileContent}
                                 </Row>
                             </div>*/}
-                            <div className={tileShadow} style={{display: toggle2, backgroundImage: tileBackgroundImage, height: "100%", backgroundSize: "cover"}}>
-                                <Row className='flow-text textStyle' style={{ paddingTop: '5vh', paddingLeft: "5px"}}>
+                            <div className={tileShadow} style={{display: toggle2, backgroundImage: tileBackgroundImage, height: "100%", backgroundSize: "cover", position: "relative"}}>
+                                <Row className='flow-text textStyle headerType' style={{ width: '80%', textAlign: 'center', position:'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
                                     {title}
                                 </Row>
                                     
-                                <Row className='tileDescription textStyle' style={{textAlign: 'center'}}>
+                                <Row className='tileDescription textStyle' style={{ display: hoverText, width: '80%', textAlign: 'center', position:'absolute', top: '70%', left: '50%', transform: 'translate(-50%, -50%)'}}>
                                     {tileContent}
                                 </Row>
                             </div>

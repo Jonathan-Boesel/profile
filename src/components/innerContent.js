@@ -22,48 +22,48 @@ class InnerContent extends React.Component {
                                 <p>{data[this.props.page].l3}</p>
                             </Col>
                     </Col>
-                <Col s={12} l={9} id="aboutMeInnerContent">
-                    <Col s={12} l={4} >
+                <Col m={12} l={9} id="aboutMeInnerContent">
+                    <Col m={12} l={4} >
                         <img alt="Profile" className='z-depth-5 contentImage' style={{maxHeight: "30vh"}} src={data[this.props.page].image} ></img>
                     </Col>
-                    <Col s={12} l={8} id="aboutMeText"> 
+                    <Col m={12} l={8} id="aboutMeText"> 
                         <p >{data[this.props.page].l4}</p>
                         <p>Skills:</p>
                         <Col l={4} s={6}>
-                            <img alt="HTML5 logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/html5.png")} ></img>
+                            <img alt="HTML5 logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/html5.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="CSS3 logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/css3.png")} ></img>
+                            <img alt="CSS3 logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/css3.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="JS5 logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/JS5.png")} ></img>
+                            <img alt="JS5 logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/JS5.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="jquery logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/jquery.png")} ></img>
+                            <img alt="jquery logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/jquery.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="node.JS logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/nodeJS.png")} ></img>
+                            <img alt="node.JS logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/nodeJS.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="react logo" style={{maxHeight: "5vh"}} src={require("../assets/images/react.png")} ></img>
+                            <img alt="react logo" style={{maxHeight: "8vh"}} src={require("../assets/images/react.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="bootstrap logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/bootstrap.png")} ></img>
+                            <img alt="bootstrap logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/bootstrap2.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="materialize logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/materialize.png")} ></img>
+                            <img alt="materialize logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/materialize.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="mysql logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/mysql.png")} ></img>
+                            <img alt="mysql logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/mysql.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="firebase logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/firebase.png")} ></img>
+                            <img alt="firebase logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/firebase.png")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="mongodb logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/mongodb.jpg")} ></img>
+                            <img alt="mongodb logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/mongodb.jpg")} ></img>
                         </Col>
                         <Col l={4} s={6}>
-                            <img alt="handlebars logo" style={{maxHeight: "5vh"}} src={require("../assets/images/icons/handlebars.png")} ></img>
+                            <img alt="handlebars logo" style={{maxHeight: "8vh"}} src={require("../assets/images/icons/handlebars.png")} ></img>
                         </Col>
                     </Col>
                 </Col>
