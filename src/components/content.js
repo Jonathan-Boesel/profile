@@ -58,12 +58,12 @@ class Content extends React.Component {
                 let tileBackgroundImage;
                 let hoverText;
                 if (this.props[isHovered]) {
-                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url(' + image + ')';
+                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url(' + image + ')';
                     hoverText = "block";
                 }
 
                 if (!this.props[isHovered]) {
-                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url(' + image + ')';
+                    tileBackgroundImage = 'linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.8)), url(' + image + ')';
                     hoverText = "none";
                 }
 

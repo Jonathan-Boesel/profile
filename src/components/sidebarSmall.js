@@ -1,6 +1,8 @@
 import React from 'react';
 import '../App.css';
 import { Row, Col } from 'react-materialize';
+import reactlogo from "../assets/images/react.png"
+import githublogo from "../assets/images/github.png"
 
 class SideBarCompSmall extends React.Component {
     render() {
@@ -23,10 +25,10 @@ class SideBarCompSmall extends React.Component {
                     
                     <Col s={12} l={4} style={this.props.page === 3 ? point : null}className="sideBarLine3" >
                         <span>Built in  </span>
-                        <img src={require("../assets/images/react.png")} alt="React logo" style={{display: "inlineBlock", verticalAlign: "-1.25vh", height: "4vh"}}/>
+                        <img src={reactlogo} alt="React logo" style={{display: "inlineBlock", verticalAlign: "-1.25vh", height: "4vh"}}/>
                         <span>|View on</span>
                         <a target="_blank" rel="noopener noreferrer" href={'https://github.com/Jonathan-Boesel/profile'}>
-                            <img src={require("../assets/images/github.png")} alt="github logo" style={{display: "inlineBlock", verticalAlign: "-1vh", height: "4vh"}}></img>
+                            <img src={githublogo} alt="github logo" style={{display: "inlineBlock", verticalAlign: "-1vh", height: "4vh"}}></img>
                         </a>
                     </Col>
                 </Col>
