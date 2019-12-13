@@ -12,7 +12,7 @@ export default
 [   {
         'key': '1',
         'title': 'Flash Plays Live',
-        'description': 'WordPress Site Build for a client',
+        'description': 'WordPress Site Built for a client',
         'description2': 'Fully responsive site built with general specifications set by Flash Plays Live app designer. The site allows users to quickly navigate to section they are interested in, view privacy policy, contact the company, download the app, or apply to be a brand rep.',
         'builtWith': 'Built using: HTML, CSS, JavaScript, Wordpress, and plugins to handle security and contact portals',
         'howTo': 'How to use: Navigate the home page by scrolling or clicking the various tabs in the menu at the top of the screen',
